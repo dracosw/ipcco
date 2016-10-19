@@ -31,6 +31,12 @@ var db = openDatabase("ipcco", "1.0", "ipcco", 200000);  // Open SQLite Database
 
     $( document ).ready(function() {
 
+            
+
+            $("#formulario_busqueda").submit(function(e){
+                e.preventDefault();
+                filtro_productos_productor();
+            });
 
             obj_cliente_reg=null;
 
@@ -1227,6 +1233,9 @@ function showRecords() // Function For Retrive data from Database Display record
             });
 
     }
+
+
+
 
     function cerrar_sesion(){
 
