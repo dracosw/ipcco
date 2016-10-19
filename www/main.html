@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2014 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <!--<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />-->
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" href="assets/jquery_mobile/jquery.mobile-1.4.5.min.css" />
+        <script src="assets/jquery/jquery-1.12.0.min.js"></script>
+        <script src="assets/jquery_mobile/jquery.mobile-1.4.5.min.js"></script>
+
+        <script src="js/tab.js"></script>
+    
+        <link rel="stylesheet" href="assets/slick/slick.css">
+        <link rel="stylesheet" href="assets/slick/slick-theme.css">
+
+        <link rel="stylesheet" href="assets/font/style.css">
+
+        <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAAxzqLxbDRHhiGQDYDDDCsUocyUnqnYPU"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>IPCCO</title>
+
+        <link rel="stylesheet" type="text/css" href="slide/css/component.css"  />
+        <script src="slide/js/modernizr.custom.js"></script>
+
+
+
+    </head>
+    <body>
+
+
+    <div style=" width: 100%; height: 700px; position: absolute; top: 0px; background-color: rgba(23, 23, 23, 1); z-index:9999; background: -webkit-linear-gradient(270deg, rgb(16, 44, 82) 0%, rgb(142, 59, 179) 100%); display:none;  "  id="popup_buscar" >
+
+        <button style="width:50px; height:50px; position:absolute; right:5px; top:5px; border:none; background-image:url(assets/img/close_popup.png); background-repeat:no-repeat; background-position:center;     background-size: 22px; background-color:transparent; " onclick="cerrar_pop_up_busqueda()">
+            
+        </button>
+
+        <div style="width:340px; top:50%; left:50%; margin-left:-170px; margin-top:-100px; position:absolute;  height:200px; text-align:center; padding-top:20px;">
+            
+            <input  type="text" style="color:#fff; font-size: 20px; width: 90%; height: 34px; background-color: transparent; border: none; text-align:center; border-bottom:1px solid #fff;" placeholder="Buscar Productos o Fabricantes" id="buscar_popup_input" />
+            <button onclick="filtro_productos_productor()" style="    background-color: #109eb5; margin-top: 20px; border: 1px solid #ffffff; border-radius: 9px; width: 100px; height: 34px; color: #fff; font-weight: 100;">Buscar</button>
+        </div>
+
+    </div>
+
+    <div style="width:280px; left:50%; margin-left:-140px; height:200px; position:absolute; background-color:rgba(115, 29, 67, 0.88); z-index:10; top:50%; margin-top:-100px; border-radius: 20px; border: 2px solid rgba(115, 29, 67, 1); text-align:center; display:none;" id="modal_cerrar_sesion" >
+
+            <h3 style=" color: #fff; text-shadow: none;     margin-top: 37px;     font-weight: 100;">Está segudo de cerrar sesión?</h3>
+            
+
+            <div style="width:218px; margin-left:auto; margin-right:auto;">
+
+                <button style="width:100px; background-color: #f7f7f7; color: rgba(115, 29, 67, 0.88); float:left;  text-shadow:none;  "  onclick="cerrar_sesion_si()" >
+                    SI
+                </button>
+
+                <button style="width:100px; background-color: #f7f7f7; color: rgba(115, 29, 67, 0.88); float:left;  text-shadow:none;  margin-left:10px; " onclick="cerrar_pop_cerrar()" >
+                    NO
+                </button>
+
+             </div>
+
+                
+        </div>
+
+    <div id="contain_menu" style="z-index:999;" >
+        <div id="menu_agro">
+            <div class="background_filter">
+                <img src="assets/img/logo_ipcco.png" style="  width: 80px; float:left; margin-left:110px;     margin-top: 16px;  ">
+            </div>
+
+            <div style="width:100%; float:left; " id="base_filtro">
+
+                <div class="boton_menu_filtro" onclick="abrir_menu_principal('foo1',1,'','')">
+                    <span class="nombre-filtro" id="name_filt_2">Inicio</span>
+                </div>
+
+                <div class="boton_menu_filtro" onclick="abrir_menu_principal('foo2',2,'','')">
+                    <span class="nombre-filtro" id="name_filt_1">Categorias</span>
+                </div>
+
+                <div class="boton_menu_filtro"  onclick="$('#contain_menu').hide('fast');abrir_mi_cuenta()">
+                    <span class="nombre-filtro" id="name_filt_3">Mi Cuenta</span>
+                </div>
+
+                <div class="boton_menu_filtro" onclick="abrir_menu_principal('foo3',2,'SI','')" >
+                    <span class="nombre-filtro" id="name_filt_4">Mis Favoritos</span>
+                </div>
+
+                <div class="boton_menu_filtro" onclick="abrir_menu_principal('foo_productores',3,'','')">
+                    <span class="nombre-filtro" id="name_filt_4">Buscar Fabricantes</span>
+                </div>
+
+                <div class="boton_menu_filtro" onclick="abrir_menu_principal('foo3',2,'','')">
+                    <span class="nombre-filtro" id="name_filt_4">Buscar Productos</span>
+                </div>
+
+
+                <div class="boton_menu_filtro" onclick="abrir_menu_principal('foo3',2,'','6')">
+                    <span class="nombre-filtro" id="name_filt_4">Promociones</span>
+                </div>
+
+
+                 <div class="boton_menu_filtro" onclick="abrir_menu_principal('fooMiPedido_registro',4,'','')">
+                    <span class="nombre-filtro" id="name_filt_4">Solicitar Registro</span>
+                </div>
+
+                <div class="boton_menu_filtro">
+                    <span class="nombre-filtro" id="name_filt_3" onclick="abrir_login_fabricante()">Cuenta Fabricante</span>
+                </div>
+
+              
+
+               
+            </div>
+
+            <div style="width:100%; float:left; display:none; overflow-y:hidden;" id="list_data">
+                
+            </div>
+            
+            
+
+        </div>
+        <div class="disparador" onclick="abrir_filtro()">
+            
+        </div>
+    </div>
+
+
+    
+    <div data-role="page" id="foo1">
+
+        <div class="container">
+            
+
+            <div id="slideshow" class="dragslider">
+                <section class="img-dragger img-dragger-large dragdealer">
+                    <div class="handle">
+                        <div class="slide" data-content="content-1">
+
+                            <div role="main" class="ui-content" style="text-align:center; position:relative;">
+
+                                
+                                <div style="width:100%; heigh:auto; float:left;" id="cnv_lang">
+
+                                    <button style=" border:none; width: 40px; float: left; height: 40px; background-color:transparent;   border-radius: 9px; background-image:url(assets/img/menu_icon.png); background-size:30px; background-repeat:no-repeat; background-position:center;" onclick="abrir_filtro()" >
+                                    </button>
+
+
+                                  
+                                   
+                                    <div style="width:104px;  float:right; margin-right:0px;     margin-top: 15px; ">
+                                       
+                                        
+                                        <!--
+
+                                        <div style="width: 45px; height: 19px;  padding: 2px;  float: left; margin-right: 6px; background-image: url(assets/img/btn_spanish.png);     background-color: #EA4089; background-size: 45px; background-position: center center; background-repeat: no-repeat; border-radius: 6px;" id="btn_esp" onclick="open_language('esp')">
+                                            
+                                        </div>
+
+                                        <div style="width: 45px; height: 19px;  padding: 2px;  float: left; background-image: url(assets/img/btn_english.png);  background-size: 45px; background-position: center center; background-repeat: no-repeat; border-radius: 6px;" id="btn_eng" onclick="open_language('eng')">
+                                            
+                                        </div>
+                                        -->
+                                        
+                                        
+                                    </div>
+                                    
+                                    
+                                </div>
+
+                                <img src="assets/img/logo_ipcco.png" style="width: 120px; margin-top:220px;" >
+                                <br />
+                                <span style="shadow-text:none; color:#fff;" id="load_in">... Cargando ...</span>
+
+
+                            </div>
+
+                            
+
+
+                            
+                        </div>
+                        <!--
+                        <div class="slide" data-content="content-2">
+                            
+                            <h2>Busca <span>Agricultores por sector de producción.</span></h2>
+
+                             <img src="assets/img/cover1.png" style="    position: absolute; left: 50%; margin-left: -134px; top: 40%;">
+
+                             <div style="width:100%; height:30px; position:absolute; bottom:20px; ">
+                                <div style="width:122px; height:30px;  float:none; margin-left:auto; margin-right:auto;">
+
+                                  
+
+                                    <div style="width:10px; height:10px; float:left; background-color:#000; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+
+                                      <div style="width:10px; height:10px; float:left; background-color:#fff; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+
+                                     <div style="width:10px; height:10px; float:left; background-color:#000; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+
+                                     <div style="width:10px; height:10px; float:left; background-color:#000; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+
+                                     <div style="width:10px; height:10px; float:left; background-color:#000; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+                                     <div style="width:10px; height:10px; float:left; background-color:#000; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+
+                                      <div style="width:10px; height:10px; float:left; background-color:#000; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                           
+                        </div>
+                        <div class="slide" data-content="content-3">
+                           
+                            <h2>Localiza <span>Miles de productores cerca a tu ubicación o en la ciudad o país que desea</span></h2>
+
+                            <img src="assets/img/cover2.png" style="    position: absolute; left: 50%; margin-left: -134px; top: 43%;">
+
+                            
+                            <div style="width:100%; height:30px; position:absolute; bottom:20px; ">
+                                <div style="width:122px; height:30px;  float:none; margin-left:auto; margin-right:auto;">
+
+                                  
+
+                                    <div style="width:10px; height:10px; float:left; background-color:#000; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+
+                                    
+
+                                     <div style="width:10px; height:10px; float:left; background-color:#000; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+
+                                    <div style="width:10px; height:10px; float:left; background-color:#fff; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+
+                                     <div style="width:10px; height:10px; float:left; background-color:#000; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+
+                                     <div style="width:10px; height:10px; float:left; background-color:#000; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+                                     <div style="width:10px; height:10px; float:left; background-color:#000; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+
+                                      <div style="width:10px; height:10px; float:left; background-color:#000; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                           
+
+                        </div>
+                        <div class="slide" data-content="content-4">
+
+                            <img src="assets/img/cover3.png" style="    position: absolute; left: 50%; margin-left: -134px; top: 45%;">
+                            
+                            <h2>Descubre <span>Agricultores, Productos y empresas, por detalle de producción, calendario de producción, certificaciones de productos,dirección teléfonos de contacto, email y mucho más.</span></h2>
+
+
+                            <div style="width:100%; height:30px; position:absolute; bottom:20px; ">
+                                <div style="width:122px; height:30px;  float:none; margin-left:auto; margin-right:auto;">
+
+                                  
+
+                                    <div style="width:10px; height:10px; float:left; background-color:#000; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+
+                                    
+
+                                     <div style="width:10px; height:10px; float:left; background-color:#000; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+
+                                   
+
+                                     <div style="width:10px; height:10px; float:left; background-color:#000; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+
+                                     <div style="width:10px; height:10px; float:left; background-color:#fff; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+
+                                     <div style="width:10px; height:10px; float:left; background-color:#000; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+                                     <div style="width:10px; height:10px; float:left; background-color:#000; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+
+                                      <div style="width:10px; height:10px; float:left; background-color:#000; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+                                </div>
+
+                            </div>
+                           
+                        </div>
+                        <div class="slide" data-content="content-5">
+
+                             <img src="assets/img/cover4.png" style="    position: absolute; left: 50%; margin-left: -134px; top: 40%;">
+                           
+                            <h2>Filtra <span>En detalle productos </span></h2>
+
+                            <div style="width:100%; height:30px; position:absolute; bottom:20px; ">
+                                <div style="width:122px; height:30px;  float:none; margin-left:auto; margin-right:auto;">
+
+                                  
+
+                                <div style="width:10px; height:10px; float:left; background-color:#000; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+
+                                    
+
+                                     <div style="width:10px; height:10px; float:left; background-color:#000; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+
+                                   
+
+                                     <div style="width:10px; height:10px; float:left; background-color:#000; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+
+                                   
+
+                                     <div style="width:10px; height:10px; float:left; background-color:#000; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+
+                                      <div style="width:10px; height:10px; float:left; background-color:#fff; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+
+                                     <div style="width:10px; height:10px; float:left; background-color:#000; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+
+                                      <div style="width:10px; height:10px; float:left; background-color:#000; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+                                </div>
+
+                            </div>
+                            
+                        </div>
+                        <div class="slide" data-content="content-6">
+                           
+                            <h2>Vende <span>Si eres agricultor registra tu producto y descubre clientes en todo el mundo</span></h2>
+
+                            <img src="assets/img/cover5.png" style="    position: absolute; left: 50%; margin-left: -134px; top: 40%;">
+
+                            
+                             <div style="width:100%; height:30px; position:absolute; bottom:20px; ">
+                                <div style="width:122px; height:30px;  float:none; margin-left:auto; margin-right:auto;">
+
+                                  
+
+                                <div style="width:10px; height:10px; float:left; background-color:#000; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+
+                                    
+
+                                     <div style="width:10px; height:10px; float:left; background-color:#000; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+
+                                   
+
+                                     <div style="width:10px; height:10px; float:left; background-color:#000; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+
+                                   
+
+                                     <div style="width:10px; height:10px; float:left; background-color:#000; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+
+                                     
+                                     <div style="width:10px; height:10px; float:left; background-color:#000; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+
+                                     <div style="width:10px; height:10px; float:left; background-color:#fff; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+
+                                      <div style="width:10px; height:10px; float:left; background-color:#000; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                           
+                        </div>
+
+
+
+                        <div class="slide" data-content="content-6">
+                           
+                            <h2>Resgístrate <span>Y recibe ofertas de productos agrícolas.</span></h2>
+
+                            <img src="assets/img/cover6.png" style="    position: absolute; left: 50%; margin-left: -134px; top: 40%;">
+
+                            
+                             <div style="width:100%; height:30px; position:absolute; bottom:20px; ">
+                                <div style="width:122px; height:30px;  float:none; margin-left:auto; margin-right:auto;">
+
+                                  
+
+                                <div style="width:10px; height:10px; float:left; background-color:#000; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+
+                                    
+
+                                     <div style="width:10px; height:10px; float:left; background-color:#000; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+
+                                   
+
+                                     <div style="width:10px; height:10px; float:left; background-color:#000; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+
+                                   
+
+                                     <div style="width:10px; height:10px; float:left; background-color:#000; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+
+                                     
+                                     <div style="width:10px; height:10px; float:left; background-color:#000; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+
+                                     <div style="width:10px; height:10px; float:left; background-color:#000; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+
+                                    <div style="width:10px; height:10px; float:left; background-color:#fff; border-radius:50%; margin-right:5px; border:solid 1px #fff;">
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        -->
+                       
+                </section><!-- /img-dragger-->
+                <!-- Content section -->
+                
+            </div>
+        </div><!-- /container --> 
+
+
+        
+    </div>
+
+    <div data-role="page" id="foo2" style="background-color:#2b383e !important;">
+
+        <div data-role="header" style="background-color: #fff !important; border:none !important; padding-top: 10px; float: left; width: 100%; padding-bottom:10px;" >
+            
+            <div style="width:20%; float:left; height:51px; text-align:center;">
+                <button style="width:40px; height:40px; border: none; box-shadow: none; background-color:#fff; background-image:url(assets/img/menu_icon_gray.png); background-size:30px; background-position:center; background-repeat:no-repeat; " onclick="abrir_filtro()"></button>
+            </div>
+
+            <div style="width:60%; padding-top:5px; padding-bottom:0px; position:relative; float:left; text-align:center;">
+                <img src="assets/img/logo.png" style="width:130px">
+                
+            </div>
+
+            <div style="width:20%; float:left; height:51px; text-align:center;">
+                <button style="width:40px; height:40px; border: none; box-shadow: none; background-color:#fff; background-image:url(assets/img/search_icon_gray.png); background-size:30px; background-position:center; background-repeat:no-repeat; " onclick="abrir_pop_up_busqueda()"></button>
+            </div>
+        </div>
+
+        <div role="main" class="ui-content" style="overflow-y:scroll; padding-left: 0px; padding-right: 0.1px; text-align:center;" id="id_main_1">
+            <div class="contain_principal_sectores" id="id_panel_sectores">
+                
+                
+                <img src="assets/img/titulo_categoria.png" style="width: 115px; margin-bottom: 8px;">
+                
+
+                <div class="contain_productores" id="tip_sectores_1" >
+
+                </div>
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+    </div>
+
+    <!--  -->
+
+    <div data-role="page" id="foo_productores" style="background-color:#f5f5f5 !important;">
+
+        <div data-role="header" style="background-color: #fff !important; border:none !important; padding-top: 10px; float: left; width: 100%; padding-bottom:10px;" >
+            
+            <div style="width:20%; float:left; height:51px; text-align:center;">
+                <button style="width:40px; height:40px; border: none; box-shadow: none; background-color:#fff; background-image:url(assets/img/menu_icon_gray.png); background-size:30px; background-position:center; background-repeat:no-repeat; " onclick="abrir_filtro()"></button>
+            </div>
+
+            <div style="width:60%; padding-top:5px; padding-bottom:0px; position:relative; float:left; text-align:center;">
+                <img src="assets/img/logo.png" style="width:130px">
+                
+            </div>
+
+
+            <div style="width:20%; float:left; height:51px; text-align:center;">
+                <button style="width:40px; height:40px; border: none; box-shadow: none; background-color:#fff; background-image:url(assets/img/search_icon_gray.png); background-size:30px; background-position:center; background-repeat:no-repeat; " onclick="abrir_pop_up_busqueda()"></button>
+            </div>
+        </div>
+
+        <div role="main" class="ui-content" style="overflow-y:scroll; padding-left: 0px; padding-right: 0.1px; text-align:center;" id="id_main_1">
+            <div class="contain_principal_sectores" id="id_panel_sectores">
+
+
+                <div style="width:100%; height:40px; float:left; position:absolute;">
+                    <button style="width:40px; height:40px;  box-shadow: none; background-color:#fff; background-image:url(assets/img/map_icon.png); background-size:30px; background-position:center; background-repeat:no-repeat; float:right; margin-right: 20px;   top: -18px;     border: 1px solid #ccc;" onclick="abrir_mapa_fabricante()">
+                        
+                    </button>
+                </div>
+                
+                
+                <img src="assets/img/titulo_fabricante.png" style="height: 21px; margin-bottom: 8px;">
+                
+                
+
+                <div class="contain_productores" id="contain_fabricantes_ipcco" style="overflow-y:scroll;">
+
+
+
+
+                </div>
+
+
+            </div>
+        </div>
+
+        
+    </div>
+
+
+
+    <div data-role="page" id="fooResultadoBusqueda" style="background-color:#f5f5f5 !important;">
+
+        <div data-role="header" style="background-color: #fff !important; border:none !important; padding-top: 10px; float: left; width: 100%; padding-bottom:10px;" >
+            
+            <div style="width:20%; float:left; height:51px; text-align:center;">
+                <button style="width:40px; height:40px; border: none; box-shadow: none; background-color:transparent; background-image:url(assets/img/menu_icon_gray.png); background-size:30px; background-position:center; background-repeat:no-repeat; " onclick="abrir_filtro()"></button>
+            </div>
+
+            <div style="width:60%; padding-top:5px; padding-bottom:0px; position:relative; float:left; text-align:center;">
+                <img src="assets/img/logo.png" style="width:130px">
+                
+            </div>
+
+
+            <div style="width:20%; float:left; height:51px; text-align:center;">
+                <button style="width:40px; height:40px; border: none; box-shadow: none; background-color:transparent; background-image:url(assets/img/search_icon_gray.png); background-size:30px; background-position:center; background-repeat:no-repeat; " onclick="abrir_pop_up_busqueda()"></button>
+            </div>
+        </div>
+
+        <div role="main" class="ui-content" style="overflow-y:scroll; padding-left: 0px; padding-right: 0.1px; text-align:center;" id="id_main_1">
+            <div class="contain_principal_sectores" id="id_panel_sectores">
+                
+                
+                 <center>
+                    <div style="width:100%;">
+                        <img src="assets/img/titulo_resultado.png" style="height: 32px; margin-bottom: 8px;">
+                    </div>
+                </center> 
+                
+
+                <div class="contain_productores" id="contain_filtro_resultado" style="overflow-y:scroll;">
+
+
+
+
+                </div>
+
+
+            </div>
+        </div>
+
+        
+    </div>
+
+
+    <div data-role="page" id="fooMiPedido_login" style="background-color:#f5f5f5 !important;">
+
+        <div data-role="header" style="background-color: #fff !important; border:none !important; padding-top: 10px; float: left; width: 100%; padding-bottom:10px;" >
+            
+            <div style="width:20%; float:left; height:51px; text-align:center;">
+                <button style="width:40px; height:40px; border: none; box-shadow: none; background-color:#fff; background-image:url(assets/img/menu_icon_gray.png); background-size:30px; background-position:center; background-repeat:no-repeat; " onclick="abrir_filtro()"></button>
+            </div>
+
+            <div style="width:60%; padding-top:5px; padding-bottom:0px; position:relative; float:left; text-align:center;">
+                <img src="assets/img/logo.png" style="width:130px">
+                
+            </div>
+
+
+            <div style="width:20%; float:left; height:51px; text-align:center;">
+                <button style="width:40px; height:40px; border: none; box-shadow: none; background-color:#fff; background-image:url(assets/img/search_icon_gray.png); background-size:30px; background-position:center; background-repeat:no-repeat; " onclick="abrir_pop_up_busqueda()"></button>
+            </div>
+        </div>
+
+        <div role="main" class="ui-content" style="overflow-y:scroll; padding-left: 0px; padding-right: 0.1px; text-align:center;" id="id_main_1">
+            <div class="contain_principal_sectores" id="id_mi_pedido_login">
+                <center>
+
+                    <div style="width:80%;">
+                        
+                    
+                        <h1>LOGIN CLIENTE</h1>
+                        <input type="text" placeholder="email" id="txtusuario_app" >
+                       
+                        <input type="password" placeholder="Password" id="txtpassword_app" >
+
+
+                         <div style="margin-top:10px; float:left;">
+                             
+                         
+                            <input type="checkbox" id="enab_passw" style="margin-top: 0px;"><span style="font-size:12px; margin-left:35px;">Quieres mantener la sesión en un dispositivo?</span> 
+                         </div>
+
+                         <br />
+                         
+                        <button style="width:100%; background-color: #1f6286; color: #fff; font-weight:100px; float:left; text-shadow:none; " onclick="loguin_app(1)">
+                            Ingresar
+                        </button>
+
+                        <br />
+
+                        <button style="width:100%; background-color: #702d8e; color: #fff;  font-weight:100px; float:left;  text-shadow:none; " onclick="registrarse_ipcco()">
+                            Registrarse en Ipcco
+                        </button>
+                    </div>
+                </center> 
+            </div>
+        </div>
+    </div>
+
+
+    <div data-role="page" id="fooMiPedido_loginFab" style="background-color:#f5f5f5 !important;">
+
+        <div data-role="header" style="background-color: #fff !important; border:none !important; float: left; width: 100%; padding-bottom:10px;" >
+            <div style="width:100%; padding-top:5px; padding-bottom:0px; text-align:center; position:relative; float:left;">
+                <img src="assets/img/logo.png" style="width:130px">
+                
+            </div>
+           
+
+        </div>
+
+        <div role="main" class="ui-content" style="overflow-y:scroll; padding-left: 0px; padding-right: 0.1px; text-align:center;" id="id_main_1">
+            <div class="contain_principal_sectores" id="id_mi_pedido_login">
+                <center>
+
+                    <div style="width:80%;">
+                        
+                    
+                        <h1>LOGIN FABRICANTE</h1>
+                        <input type="text" placeholder="email" id="txtusuario_f_app" >
+                       
+                        <input type="password" placeholder="Password" id="txtpassword_f_app" >
+
+
+                         <div style="margin-top:10px; float:left;">
+                             
+                         
+                            <input type="checkbox" id="enab_f_passw" style="margin-top: 0px;"><span style="font-size:12px; margin-left:35px;">Quieres mantener la sesión en un dispositivo?</span> 
+                         </div>
+
+                         <br />
+                         
+                        <button style="width:100%; background-color: #536dfe; color: #ffffff; float:left; text-shadow:none; " onclick="loguin_app_fab(1)">
+                            Ingresar
+                        </button>
+
+                        
+                       
+                    </div>
+                </center> 
+            </div>
+        </div>
+    </div>
+
+    <div data-role="page" id="fooMiPedido_mi_pedido" style="background-color:#f5f5f5 !important; position:relative;">
+
+         <div style="width:100%; height:130px; position:absolute; background-color:#fff; z-index:9; bottom: 0px; text-align:center; " >
+            <table style="width:100%" border="0">
+                <tr>
+                    <td style="padding-left:15px; text-align:left;">Subtotal</td>
+                    <td style="width:100px; text-align:right; padding-right:15px;" id="tot_subtotal">$0</td>
+                </tr>
+                <tr>
+                    <td style="padding-left:15px; text-align:left;">Envío</td>
+                    <td style="width:100px; text-align:right; padding-right:15px;" id="tot_envio">$0</td>
+                </tr>
+                <tr>
+                    <td style="padding-left:15px; text-align:left; font-weight:bold;">TOTAL</td>
+                    <td style="width:100px; text-align:right; padding-right:15px; font-weight:bold;" id="tot_toal">$0</td>
+                </tr>
+            </table>
+            
+            <button style=" width:50%; background-color: #5aafc3; color: #fff; float:left; height: 55px;  text-shadow:none;" onclick="actualizar_carrito(1)"  id="btn_actualizar_carrito"  >
+                Actualizar Pedido
+            </button>
+
+            <button style=" width:50%; background-color: #eb3378; color: #fff; height: 55px; float:left;  text-shadow:none; "  id="btn_compra_pedido" onclick="actualizar_carrito_compra()"  >
+                Comprar
+            </button>
+
+         </div>
+
+        
+        <div style="width:280px; left:50%; margin-left:-140px; height:200px; position:absolute; background-color:rgba(115, 29, 67, 0.88); z-index:10; top:50%; margin-top:-100px; border-radius: 20px; border: 2px solid rgba(115, 29, 67, 1); text-align:center; display:none;" id="modal_eliminar_item" >
+
+            <h3 style=" color: #fff; text-shadow: none;     margin-top: 37px;     font-weight: 100;">Está segudo de eliminar este Item?</h3>
+            
+
+            <div style="width:218px; margin-left:auto; margin-right:auto;">
+
+                <button style="width:100px; background-color: #f7f7f7; color: rgba(115, 29, 67, 0.88); float:left;  text-shadow:none;  " onclick="eliminar_item()" >
+                    SI
+                </button>
+
+                <button style="width:100px; background-color: #f7f7f7; color: rgba(115, 29, 67, 0.88); float:left;  text-shadow:none;  margin-left:10px; " onclick="cerrar_pop_del()" >
+                    NO
+                </button>
+
+             </div>
+
+                
+        </div>
+
+
+        <div data-role="header" style="background-color: #fff !important; border:none !important; padding-top: 10px; float: left; width: 100%; padding-bottom:10px;" >
+            
+            <div style="width:20%; float:left; height:51px; text-align:center;">
+                <button style="width:40px; height:40px; border: none; box-shadow: none; background-color:#fff; background-image:url(assets/img/menu_icon_gray.png); background-size:30px; background-position:center; background-repeat:no-repeat; " onclick="abrir_filtro()"></button>
+            </div>
+
+            <div style="width:60%; padding-top:5px; padding-bottom:0px; position:relative; float:left; text-align:center;">
+                <img src="assets/img/logo.png" style="width:130px">
+                
+            </div>
+
+            <div style="width:20%; float:left; height:51px; text-align:center;">
+                <button style="width:40px; height:40px; border: none; box-shadow: none; background-color:#fff; background-image:url(assets/img/power-off.png); background-size:30px; background-position:center; background-repeat:no-repeat; " onclick="cerrar_sesion()"></button>
+            </div>
+        </div>
+
+        <div role="main" class="ui-content" style="overflow-y:scroll; padding-left: 0px; padding-right: 0.1px; text-align:center; " id="id_main_1">
+            
+            
+
+
+            <div class="contain_principal_sectores" id="id_mi_pedido_login">
+                 <center>
+                    <div style="width:100%;">
+                        <img src="assets/img/titulo_mi_pedido.png" style="height: 21px; margin-bottom: 8px;">
+                    </div>
+                </center> 
+            </div>
+            
+            <div style="width:100%; float:left; height:auto; margin-bottom:50px;" id="mi_pedido">
+                
+            </div>
+
+        </div>
+    </div>
+
+
+
+    
+    <div data-role="page" id="foo_mis_pedidos" style="background-color:#f5f5f5 !important; position:relative;">
+
+         
+
+
+       <div data-role="header" style="background-color: #fff !important; border:none !important; padding-top: 10px; float: left; width: 100%; padding-bottom:10px;" >
+            
+            <div style="width:20%; float:left; height:51px; text-align:center;">
+                <button style="width:40px; height:40px; border: none; box-shadow: none; background-color:#fff; background-image:url(assets/img/menu_icon_gray.png); background-size:30px; background-position:center; background-repeat:no-repeat; " onclick="abrir_filtro()"></button>
+            </div>
+
+            <div style="width:60%; padding-top:5px; padding-bottom:0px; position:relative; float:left; text-align:center;">
+                <img src="assets/img/logo.png" style="width:130px">
+                
+            </div>
+
+            <div style="width:20%; float:left; height:51px; text-align:center;">
+                <button style="width:40px; height:40px; border: none; box-shadow: none; background-color:#fff; background-image:url(assets/img/power-off.png); background-size:30px; background-position:center; background-repeat:no-repeat; " onclick="cerrar_sesion()"></button>
+            </div>
+        </div>
+
+        <div role="main" class="ui-content" style="overflow-y:scroll; padding-left: 0px; padding-right: 0.1px; text-align:center; " id="id_main_1">
+            <div class="contain_principal_sectores" id="id_mi_pedido_login">
+                <center>
+                    <div style="width:100%;">
+                        <img src="assets/img/titulo_mis_pedidos.png" style="height: 21px; margin-bottom: 8px;">
+                    </div>
+                </center> 
+            </div>
+            
+            <div style="width:100%; float:left; height:auto; margin-bottom:50px;" id="mis_pedidos">
+                
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+    <div data-role="page" id="fooMiPedido_registro" style="background-color:#f5f5f5 !important;">
+
+       <div data-role="header" style="background-color: #fff !important; border:none !important; padding-top: 10px; float: left; width: 100%; padding-bottom:10px;" >
+            
+            <div style="width:20%; float:left; height:51px; text-align:center;">
+                <button style="width:40px; height:40px; border: none; box-shadow: none; background-color:#fff; background-image:url(assets/img/menu_icon_gray.png); background-size:30px; background-position:center; background-repeat:no-repeat; " onclick="abrir_filtro()"></button>
+            </div>
+
+            <div style="width:60%; padding-top:5px; padding-bottom:0px; position:relative; float:left; text-align:center;">
+                <img src="assets/img/logo.png" style="width:130px">
+                
+            </div>
+
+
+           <div style="width:20%; float:left; height:51px; text-align:center;">
+                <button style="width:40px; height:40px; border: none; box-shadow: none; background-color:#fff; background-image:url(assets/img/power-off.png); background-size:30px; background-position:center; background-repeat:no-repeat; " onclick="cerrar_sesion()"></button>
+            </div>
+        </div>
+
+        <div role="main" class="ui-content" style="overflow-y:scroll; padding-left: 0px; padding-right: 0.1px; text-align:center; margin-bottom:50px;" id="id_main_1">
+            <div class="contain_principal_sectores" id="id_mi_registo_ipcco">
+                <center>
+
+                    <div style="width:80%;">
+                        
+                    
+                        <center>
+                            <img src="assets/img/titulo_registro.png" style="height:32px; margin-bottom: 8px; margin-top:10px;">
+                        </center>
+
+                        <input type="text" placeholder="Nombres *" id="txtnombres_reg" >
+
+                        <input type="text" placeholder="Apellidos *" id="txtapellidos_reg" >
+
+                        <input type="text" placeholder="Email *" id="txtemail_reg" >
+
+                        <input type="text" placeholder="Teléfono *" id="txttelefono_reg" >
+
+                        <input type="text" placeholder="Dirección" id="txttdireccion_reg" >
+
+                        <select placeholder="Paises" style="width:100% !important;" id="cmb_paises_reg" onchange="traer_departamento()">
+                           
+                        </select>
+
+                        <select placeholder="Departamentos" style="width:100% !important;" id="cmb_dpto_reg" onchange="traer_ciudad()">
+                          <option value="">Departamentos / Estado</option>
+                        </select>
+
+                        <select placeholder="Ciudad" style="width:100% !important;" id="cmb_ciudad_reg">
+                            <option value="">Ciudad / Municipio</option>
+                        </select>
+
+                       
+                        <input type="password" placeholder="Password" id="txtpassword_reg" >
+
+                        <input type="password" placeholder="Repetir Password" id="txtreppassword_reg" >
+
+                        <button style="width:100%; background-color: #1f6286; color: #ffffff; float:left;  text-shadow:none; font-weight: 100; " onclick="guardar_clientes_reg()">
+                            Registrarse
+                        </button>
+
+                         <button style="width:100%; background-color: #702d8e; color: #ffffff; float:left;  text-shadow:none;  font-weight: 100; " onclick="abir_mi_pedido()">
+                            &lt; Atrás
+                        </button>
+                       
+
+                    </div>
+                </center> 
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- MAPA FABRICANTE -->
+
+    <div data-role="page" id="foo_productores_mapa" style="background-color:#f5f5f5 !important;">
+
+        <div data-role="header" style="background-color: #fff !important; border:none !important; padding-top: 10px; float: left; width: 100%; padding-bottom:10px;" >
+            
+            <div style="width:20%; float:left; height:51px; text-align:center;">
+                <button style="width:40px; height:40px; border: none; box-shadow: none; background-color:#fff; background-image:url(assets/img/menu_icon_gray.png); background-size:30px; background-position:center; background-repeat:no-repeat; " onclick="abrir_filtro()"></button>
+            </div>
+
+            <div style="width:60%; padding-top:5px; padding-bottom:0px; position:relative; float:left; text-align:center;">
+                <img src="assets/img/logo.png" style="width:130px">
+                
+            </div>
+
+
+            <div style="width:20%; float:left; height:51px; text-align:center;">
+                <button style="width:40px; height:40px; border: none; box-shadow: none; background-color:#fff; background-image:url(assets/img/search_icon_gray.png); background-size:30px; background-position:center; background-repeat:no-repeat; " onclick="abrir_pop_up_busqueda()"></button>
+            </div>
+        </div>
+
+        <div role="main" class="ui-content" style="overflow-y:scroll; padding-left: 0px; padding-right: 0.1px; text-align:center;" id="id_main_1">
+            <div class="contain_principal_sectores" id="id_panel_sectores">
+                
+                
+               <center>
+                    <img src="assets/img/titulo_mapa_fabricantes.png" style="height:32px; margin-bottom: 8px; margin-top:10px;">
+                </center>
+                
+
+                <div class="contain_productores" id="contain_mapa_fabricante">
+                    <div style="width:96%; height:auto; margin-left: 2%;" id="contain_map_fabr">
+                        
+                        
+
+                        <div style="width:100%; height:300px; float:left;" id="mapa_fabricante">
+                        
+                        </div>
+
+                        <div style="width:100%; height:168px; background-color:rgba(0, 0, 0, 0.69); border-radius:9px; float:left; margin-top: 6px; " id="item_fab">
+                            <div style="width:100%; height:168px; background-image:url('assets/img/logo_ipcco_map.png'); background-position:center; background-repeat:no-repeat; background-size:100px; "  id="info_fabricante_mapa">
+
+
+                               
+
+                                
+                                
+                            </div>
+                        </div>
+
+                        
+                        
+                    </div>
+                    
+                </div>
+
+
+            </div>
+        </div>
+
+        
+    </div>
+
+
+    
+    <!--   MAPA  -->
+
+    
+    <div data-role="page" id="foo3" style="background-color:#f5f5f5 !important;">
+
+        <div data-role="header" style="background-color: #fff !important; border:none !important; padding-top: 10px; float: left; width: 100%; padding-bottom:10px;" >
+            
+            <div style="width:20%; float:left; height:51px; text-align:center;">
+                <button style="width:40px; height:40px; border: none; box-shadow: none; background-color:transparent; background-image:url(assets/img/menu_icon_gray.png); background-size:30px; background-position:center; background-repeat:no-repeat; " onclick="abrir_filtro()"></button>
+            </div>
+
+            <div style="width:60%; padding-top:5px; padding-bottom:0px; position:relative; float:left; text-align:center;">
+                <img src="assets/img/logo.png" style="width:130px">
+                
+            </div>
+
+
+            <div style="width:20%; float:left; height:51px; text-align:center;">
+                <button style="width:40px; height:40px; border: none; box-shadow: none; background-color:transparent; background-image:url(assets/img/search_icon_gray.png); background-size:30px; background-position:center; background-repeat:no-repeat; " onclick="abrir_pop_up_busqueda()"></button>
+            </div>
+            
+            <div style="width:100%; float:left;">
+
+                <center>
+                     <select style="width:100%;" id="cmbsubcategoria" onchange="cargar_productos(this.value)">
+                       <option value=""><span id="sub_Cat">Subcategorias</span></option>
+                    </select>
+                </center>
+            </div>
+        </div>
+ 
+
+            <div role="main" class="ui-content" style="overflow-y:scroll;" id="filtro_productos">
+
+                
+            </div>
+        
+    </div>
+
+
+
+
+    <!-- DEtalle Producto -->
+
+     <div data-role="page" id="fooProducto" style="background-color:#f5f5f5 !important; color:#000;">
+
+          <div data-role="header" style="background-color: #fff !important; border:none !important; padding-top: 10px; float: left; width: 100%; padding-bottom:10px;" >
+            
+            <div style="width:20%; float:left; height:51px; text-align:center;">
+                <button style="width:40px; height:40px; border: none; box-shadow: none; background-color:transparent; background-image:url(assets/img/menu_icon_gray.png); background-size:30px; background-position:center; background-repeat:no-repeat; " onclick="abrir_filtro()"></button>
+            </div>
+
+            <div style="width:60%; padding-top:5px; padding-bottom:0px; position:relative; float:left; text-align:center;">
+                <img src="assets/img/logo.png" style="width:130px">
+                
+            </div>
+
+
+            <div style="width:20%; float:left; height:51px; text-align:center;">
+                <button style="width:40px; height:40px; border: none; box-shadow: none; background-color:transparent; background-image:url(assets/img/search_icon_gray.png); background-size:30px; background-position:center; background-repeat:no-repeat; " onclick="abrir_pop_up_busqueda()"></button>
+            </div>
+        </div>
+
+
+            <div role="main" class="ui-content" style="overflow-y:scroll; color:#a0a0a0; text-shadow: none;" id="filtro_productos_detail">
+                
+                <center>
+                    <h1 style="color:#949494;" id="nombreProducto"></h1>
+                </center>
+                
+                
+                <div style="width:100%; height:auto; float:left;" id="galeriaProducto">
+                    
+                </div>
+               
+                
+                <div style="width:100%; height:auto; float:left; margin-top:10px; text-align:center;">
+                      <h3 style="color:#a0a0a0;"><span id="precioDescuento">$0</span><small> <span style="text-decoration: line-through; margin-left:7px;" id="precioProducto">$0</span></small></h3>
+                </div>
+
+
+                 <div style="width:100%; height:auto; float:left; margin-top:0px; text-align:center;">
+                    <p id="descripcionProducto"></p>
+                                  
+
+                 </div>
+
+
+                 <div style="width:100%; float:left; margin-top:10px;">
+                     <table style="width:100%;  border:none !important;" border="0">
+                         <tr style="border:none;">
+                             <td style="border:none;">
+                                 <select style="width:100%;" id="cmb_tallas">
+                                     <option style="">Tallas</option>
+                                 </select>
+                             </td>
+
+                            <td style="border:none;">
+                                 <select style="width:100%; " id="cmb_colores">
+                                     <option style="">Color</option>
+                                 </select>
+                             </td>
+                         </tr>
+
+                        
+                        <tr style="border:none;">
+                             <td style="border:none;">
+                                 <input type="number" style="height: 41px;" placeholder="Cant:"  id="cantidad_producto" />
+                             </td>
+
+                            <td style="border:none;">
+                                <button style="width:100%; background-color: #536dfe; color: #a0a0a0; text-shadow:none; " onclick="agrregar_pedido()">
+                                    Agregar Pedido
+                                </button>
+                             </td>
+                         </tr>
+
+                     </table>
+                 </div>
+
+                 <h5 style="color:#a0a0a0;">Información Fabricante</h5>
+
+
+                 <table style="width:100%;  border:none !important; color:#a0a0a0;" border="0">
+                    <tr>
+                        
+                        <td colspan="2" style="text-align:center;" id="logo_fabricante">
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 120px;">RAZON SOCIAL</td>
+                        <td><span id="razon_social_fab">Calzado IVANOVA</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>REPRESENTANTE</td>
+                        <td>
+                            <span  id="presentante_fab">Juan Pablo Arias</span>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>NIT</td>
+                        <td><span id="nit_fab">138422232</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>DIRECCION</td>
+                        <td><span  id="direccion_fab">Calle 29 No. 30-45</span></td>
+                    </tr>
+
+
+                    <tr>
+                        <td>CIUDAD</td>
+                        <td><span  id="ciudad_fab">BUCARAMANGA</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>TELEFONOS</td>
+                        <td><span  id="tel_fab">3205677282</span></td>
+                    </tr>
+
+
+                     <tr>
+                        <td>EMAIL</td>
+                        <td><span  id="email_fab">info@calzadovi.com</span></td>
+                    </tr>
+
+                     <tr>                        
+                        <td colspan="2" style="text-align:center;">
+                           <div style="width:100%; height:240px; " id="mapa_producto">
+                               
+                           </div>
+                        </td>
+                    </tr>
+
+
+                 </table>
+
+                 <div style="width:100%; height:60px; float:left;">
+                     
+                 </div>
+              
+            </div>
+        
+    </div>
+
+     <!--fin DEtalle Producto -->
+
+
+     <!-- INICIO FABRICANTE -->
+    <div data-role="page" id="fooFabricante" style="background-color:#f5f5f5 !important;">
+
+        <div data-role="header" style="background-color: #fff !important; border:none !important; padding-top: 10px; float: left; width: 100%; padding-bottom:10px;" >
+            
+            <div style="width:20%; float:left; height:51px; text-align:center;">
+                <button style="width:40px; height:40px; border: none; box-shadow: none; background-color:transparent; background-image:url(assets/img/menu_icon_gray.png); background-size:30px; background-position:center; background-repeat:no-repeat; " onclick="abrir_filtro()"></button>
+            </div>
+
+            <div style="width:60%; padding-top:5px; padding-bottom:0px; position:relative; float:left; text-align:center;">
+                <img src="assets/img/logo.png" style="width:130px">
+                
+            </div>
+
+
+            <div style="width:20%; float:left; height:51px; text-align:center;">
+                <button style="width:40px; height:40px; border: none; box-shadow: none; background-color:transparent; background-image:url(assets/img/search_icon_gray.png); background-size:30px; background-position:center; background-repeat:no-repeat; " onclick="abrir_pop_up_busqueda()"></button>
+            </div>
+           
+        </div>
+
+
+            <div role="main" class="ui-content" style="overflow-y:scroll; color:#949494; text-shadow: none;" id="filtro_productores">
+                
+                <center>
+                    <h1 style="color:#949494;" id="princ_razon_social_fab"></h1>
+                </center>
+                
+                
+
+                 
+
+
+                 <table style="width:100%;  border:none !important; color:#949494;" border="0">
+                    <tr>
+                        
+                        <td colspan="2" style="text-align:center;" id="princ_logo_fabricante">
+                            
+                        </td>
+                    </tr>
+                    
+
+                    <tr>
+                        <td>REPRESENTANTE</td>
+                        <td>
+                            <span  id="princ_presentante_fab"></span>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>NIT</td>
+                        <td><span id="princ_nit_fab"></span></td>
+                    </tr>
+
+                    <tr>
+                        <td>DIRECCION</td>
+                        <td><span  id="princ_direccion_fab"></span></td>
+                    </tr>
+
+
+                    <tr>
+                        <td>CIUDAD</td>
+                        <td><span  id="princ_ciudad_fab"></span></td>
+                    </tr>
+
+                    <tr>
+                        <td>TELEFONOS</td>
+                        <td><span  id="princ_tel_fab"></span></td>
+                    </tr>
+
+
+                     <tr>
+                        <td>EMAIL</td>
+                        <td><span  id="princ_email_fab"></span></td>
+                    </tr>
+
+                     <tr>                        
+                        <td colspan="2" style="text-align:center;">
+                           <div style="width:100%; height:240px; " id="princ_mapa_productor">
+                               
+                           </div>
+                        </td>
+                    </tr>
+
+
+                 </table>
+                
+                <center>
+                    <img src="assets/img/titulo_producto.png" style="height:21px; margin-bottom: 8px; margin-top:10px;">
+                </center>
+                  
+
+                 <div style="width:100%; float:left; height:auto;" id="filtro_productos_precio">
+                     
+                 </div>
+
+                 <div style="width:100%; height:60px; float:left;">
+                     
+                 </div>
+              
+            </div>
+        
+    </div>
+     <!-- FIN FABRICANTE -->
+
+
+    <!--
+    <ul id="singleGallery" class="visible-xs">
+              <li><img src="images/products/product-big-1.jpg" alt="" /></li>
+              <li><img src="images/products/product-big-2.jpg" alt="" /></li>
+              <li><img src="images/products/product-big-3.jpg" alt="" /></li>
+              <li><img src="images/products/product-big-4.jpg" alt="" /></li>
+              <li><img src="images/products/product-big-5.jpg" alt="" /></li>
+            </ul>
+    -->
+
+    <div data-role="page" id="foo6" style="background-color:#fff !important;">
+    
+
+        <div role="main" class="ui-content" style="overflow-y:scroll;" id="id_main_4">
+
+
+            <img src="assets/img/logo.png" style="width:130px;  position:absolute;  left:50%; margin-left:-65px; top:5px;">
+
+            <div style="width:40px; height:40px; position:absolute; background-color:rgba(65, 72, 36, 0.69); top:10px; left:10px; border-radius:5px; background-image:url(assets/img/back.png); background-size:25px; background-position:center; background-repeat:no-repeat;" onclick="atras_detalle()">
+                
+            </div>
+            
+            <div style="width:100%; height:auto; margin-top:35px; padding-top:5px; padding-bottom:5px; border-bottom:solid 1px #ddd; float:left; text-shadow:none; color:#fff; font-family:arial; font-size:20px;">
+                <strong id="detal_titulo"></strong>
+            </div>
+
+            <div style="width:100%; height:auto; padding-top:5px; padding-bottom:5px; border-bottom:solid 1px #ddd; float:left;  text-shadow:none; color:#fff; font-family:arial;">
+                <span id="detal_subtitulo"></span>
+            </div>
+            
+            <div style="width:100%; float:left; height:180px; background-position:center; background-size:cover; position:relative;" id="imagen_producto"> 
+                <img src="assets/img/organic.png" style="width:100px; position:absolute; top:5px; right:5px; display:none;" id="es_organico"  >
+
+                
+            </div>
+            
+            
+            <div style="width:100%; height:auto; padding-top:5px; padding-bottom:5px; border-bottom:solid 1px #ddd; float:left;  text-shadow:none; color:#fff; font-family:arial;" id="contain_galeria">
+                
+
+
+
+            </div>
+
+
+            
+            <div style="width:100%; height:auto; padding-top:5px; padding-bottom:5px; border-bottom:solid 1px #ddd; float:left;  text-shadow:none; color:#fff; font-family:arial;     text-align: justify;" id="detail_descripcion">
+                
+            </div>
+
+
+            <div style="width:100%; height:auto; padding-top:5px; padding-bottom:5px; border-bottom:solid 1px #ddd; float:left;  text-shadow:none; color:#fff; font-family:arial;">
+                <strong id="lbl_informacion_adicional">Informacion Adicional: </strong><br  />
+                <table style="width:100%;" border="1">
+                    <tr>
+                        <td style="padding-left:5px;" id="lbl_cantidad_prod_mensual">Cantidad Produccion Mensual:</td>
+                        <td style="text-align:center;" id="cant_prod_mensual"></td>
+                    </tr>
+
+                    <tr>
+                        <td style="padding-left:5px;" id="lbl_capacidad_max_prod">Capacidad Maxima de Produccion:</td>
+                        <td style="text-align:center;" id="cant_max_prod"></td>
+                    </tr>
+
+                    <tr>
+                        <td style="padding-left:5px;" id="lbl_cantidad">Cantidad Actual:</td>
+                        <td style="text-align:center;" id="cant_actual"></td>
+                    </tr>
+
+                    <tr>
+                        <td style="padding-left:5px;" id="lbl_producto_organico">Producto Organico:</td>
+                        <td style="text-align:center;" id="detal_organico"></td>
+                    </tr>
+
+                </table>
+
+                <br  />
+
+
+
+            </div>
+
+
+            <div style="width:100%; height:auto; padding-top:5px; padding-bottom:5px; border-bottom:solid 1px #ddd; float:left;  text-shadow:none; color:#fff; font-family:arial;">
+                <strong id="lbl_informacion_productor">Informacion Productor: </strong><br  />
+                
+
+
+                <table style="width:100%;" border="1">
+                    
+                    <tr>
+                        <td colspan="2" id="detal_logo"></td>
+                    </tr>
+
+                    <tr>
+                        <td style="padding-left:5px;" id="lbl_empresa">Empresa:</td>
+                        <td style="text-align:center;" id="detal_empresa"></td>
+                    </tr>
+
+                    <tr>
+                        <td style="padding-left:5px;" id="lbl_rep_legal">Rep. Legal.:</td>
+                        <td style="text-align:center;" id="detal_replegal"></td>
+                    </tr>
+
+                    <tr>
+                        <td style="padding-left:5px;" id="lbl_email">Email:</td>
+                        <td style="text-align:center;" id="detal_email"></td>
+                    </tr>
+
+                    <tr>
+                        <td style="padding-left:5px;" id="lbl_tel">Tel:</td>
+                        <td style="text-align:center;" id="detal_telefono"></td>
+                    </tr>
+
+                    <tr>
+                        <td style="padding-left:5px;" id="lbl_direccion">Direccion:</td>
+                        <td style="text-align:center;" id="detal_direccion"></td>
+                    </tr>
+
+                    <tr>
+                        <td style="padding-left:5px;" id="lbl_pais">Pais:</td>
+                        <td style="text-align:center;" id="detal_pais"></td>
+                    </tr>
+
+                    <tr>
+                        <td style="padding-left:5px;" id="lbl_ciudad">Ciudad:</td>
+                        <td style="text-align:center;" id="detal_ciudad"></td>
+                    </tr>
+                    
+
+                    <tr>
+                        <td colspan="2"><div style="width:100%; height:200px;" id="mapa_2"></div></td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2" style="background-color:green;">
+
+
+                            
+                                <div class="btn_redes" style="background-image:url(assets/img/skype_white.png); " onclick="abrir_skype()">
+                                </div>
+                            
+                            
+                            
+                                <div class="btn_redes" style="background-image:url(assets/img/facebook_white.png); "  onclick="abrir_facebook()">                                   
+                                </div>
+                            
+                            
+                            
+                                <div class="btn_redes" style="background-image:url(assets/img/phone_white.png);  border-right:solid 1px green;  " onclick="abrir_telefono()">
+                                </div>
+                            
+
+                        </td>
+                    </tr>
+                    
+                </table>
+
+                <br  />
+                <br  />
+                <br  />
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div data-role="page" id="foo7" style="height:400px; background-color:#fff !important;" >
+
+            <div data-role="header" style="background-color: transparent !important; border:none !important;" >
+                <div style="width:100%; padding-top:5px; padding-bottom:0px; text-align:center; position:relative; float:left;">
+                    <img src="assets/img/logo.png" style="width:130px">
+                    
+                </div>
+            
+            </div>
+
+            <div role="main" class="ui-content" style="overflow-y:scroll;" id="id_main_4">
+                <div style="width:100%; height:100%; float:none; margin-left:auto; margin-right:auto;">
+                    <input type="text" placeholder="* Nombre Completo" id="txtnombre_registro" style="widt:80%; margin-left:10%;" >
+                </div>
+
+                <div style="width:100%; height:100%; float:none; margin-left:auto; margin-right:auto;">
+                    <input type="email" placeholder="Email" id="txtemail_registro" style="widt:80%; margin-left:10%;" >
+                </div>
+
+                <div style="width:100%; height:100%; float:none; margin-left:auto; margin-right:auto;">
+                    <input type="text" placeholder="* Celular" id="txtcelular_registro" style="widt:80%; margin-left:10%;" >
+                </div>
+
+                <div style="width:100%; height:100%; float:none; margin-left:auto; margin-right:auto;">
+                    <input type="text" placeholder="* Producto que cultiva" id="txtproducto_registro" style="widt:80%; margin-left:10%;" >
+                </div>
+
+                <div style="width:100%; height:100%; float:none; margin-left:auto; margin-right:auto;">
+                    <input type="text" placeholder="Direccion" id="txtdireccion_registro" style="widt:80%; margin-left:10%;" >
+                </div>
+
+                <textarea style="width:100%; height:100px;" placeholder="Comentarios" id="txtcomentario_registro" rows="10"></textarea>
+                <span style="color:#fff; text-shadow:none; float:right; font-size:13px;" id="lbl_obligatorio"> * Campos Obligatorios</span>
+                <br />
+
+                <button style="background-color:#AD8B00; color:#fff; text-shadow:none;" id="btn_send" onclick="enviar_mensaje()">Enviar</button>
+            </div>
+    </div>
+
+
+    <div data-role="footer" class="footer_app" style="padding:0px !important; line-height:0px !important;">
+            <div class="boton_menu">
+                <button class="botom_footer botom_footer_active" data-transition="slide"  id="btn_menu_1" onclick="cambio_boton(1,0)">
+                    <span class="icon-home" style="width: 36px; font-size:26px;"></span>   
+                    <span style="margin-top: 0px; float: left; width:100%; text-align:center; font-size:11px;" id="lbl_inicio">Inicio</span> 
+                </button>
+            </div>
+            <div class="boton_menu">
+                <button class="botom_footer"  data-transition="slide" id="btn_menu_2" onclick="cambio_boton(2,0)">
+                    <span class="icon-list" style="width: 36px; font-size:26px;"></span>   
+
+
+                    <span style="margin-top: 2px; float: left; width:100%; text-align:center; font-size:11px;" id="lbl_sectores">Categorias</span>         
+                </button>
+            </div>          
+             <div class="boton_menu" >
+                <button class="botom_footer"  id="btn_menu_4" onclick="abir_mi_pedido()">
+                    <span class="icon-ecommerce" style="width: 36px; font-size:32px;"></span>   
+  
+                    <span style="margin-top: -2px; float: left; width:100%; text-align:center; font-size:11px;" id="lbl_organico">Mi Pedido</span>             
+                </button>
+            </div>          
+            <div class="boton_menu">
+                <button class="botom_footer"  id="btn_menu_3" onclick="abrir_fabricantes()">
+                   <span style="width: 36px; font-size:26px;"><img src="assets/img/icono_fabricante.png" style="width: 31px;"></span>   
+                    <span style="margin-top: 0px; float: left; width:100%; text-align:center; font-size:11px;" id="lbl_mapa">Fabricantes</span>             
+                </button>
+            </div>          
+           
+            <div class="boton_menu">
+                <button class="botom_footer" id="btn_menu_5" onclick="abrir_mi_cuenta()">
+
+                
+                    <span class="icon-person" style="width: 36px; font-size:26px;"></span>     
+                    <span style="margin-top: 2px; float: left; width:100%; text-align:center; font-size:11px;" id="lbl_registro">Mi Cuenta</span>            
+                </button>
+            </div>          
+    </div>
+    
+    <script src="slide/js/dragdealer.js"></script>
+    <script src="slide/js/classie.js"></script>
+    <script src="slide/js/dragslideshow.js"></script>
+    
+    <script src="assets/slick/slick.min.js"></script> 
+
+    <script type="text/javascript" src="js/index.js">
+
+
+
+    app.initialize();
+
+    </script>
+</body>
+</html>
