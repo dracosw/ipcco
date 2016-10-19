@@ -18,7 +18,7 @@
  */
 
 var servidor_ws="http://ipcco.co/";
-var servidor_admin="http://draco.yo:8888/";
+var servidor_admin="http://admin.ipcco/";
 
 var zoom_mapa=13;
 
