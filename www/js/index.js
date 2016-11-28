@@ -695,7 +695,7 @@ function showRecords() // Function For Retrive data from Database Display record
         $("#btn_menu_5").addClass("botom_footer_active");
 
         if(obj_cliente_reg==null){
-            $.mobile.changePage("#fooMiPedido_registro",{transition:"slide",changeHash: false});
+            $.mobile.changePage("#fooMiPedido_login",{transition:"slide",changeHash: false});
 
             return;
         }
