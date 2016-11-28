@@ -67,6 +67,61 @@
 
     </div>
 
+
+    <div style=" width: 100%; height: 700px; position: absolute; top: 0px; background-color: rgba(0, 0, 0, 0.3); z-index:9999; display:none;  "  id="popup_detail_pagos" >
+
+
+        <div style="width:340px; top:50%; left:50%; margin-left:-170px; margin-top:-170px; position:absolute;  height:250px; text-align:center; background-color:#fff; border-radius:9px;">
+
+           <button style="width:50px; height:50px; position:absolute; right:5px; top:5px; border:none; background-image:url(assets/img/close_popup2.png); background-repeat:no-repeat; background-position:center;     background-size: 22px; background-color:transparent; " onclick="boton_cerrar_pop_prd()">
+            
+        </button>
+
+          
+          <center>
+              <h2 style="color:#666666; margin-bottom:8px;" id="pop_nombre_prod"></h2>
+          </center>  
+            
+          <table style="width:60%; text-align:left; margin-left:20px;  border:none !important;" border="0">
+              <tr style="border:none !important; display:none;" id="dispo_unidad">
+                  <td style="border:none !important;"><img src="assets/img/check2.png"></td>
+                  <td style="border:none !important;">Disponible por Unidad</td>
+              </tr>
+
+                <tr style="border:none !important; display:none;"  id="dispo_ventas">
+                  <td style="border:none !important;"><img src="assets/img/check2.png"></td>
+                  <td style="border:none !important;">Vental al por Mayor </td>
+              </tr>
+          </table>
+
+          <table style="width:290px; margin-left:20px; text-align:center;">
+              <tr style="background-color:#e72c78; color:#fff; text-shadow:none;">
+                  <td>Cantidad</td>
+                  <td>Precio</td>
+              </tr>
+
+              <tbody id="cuerpo_tabla">
+                  
+              </tbody>
+
+              
+          </table>
+        
+          <center>
+               <button style="background-color: #e72c78; padding:5px 30px;  color: #fff; font-weight:100px; text-shadow:none; margin-top:20px; border-radius:9px; border:none;" onclick="abrir_detail_prod_pop()" >
+                Ver Detalle Del Producto
+                </button>
+          </center>
+         
+
+          
+        </div>
+
+    </div>
+
+
+
+
     <div style="width:280px; left:50%; margin-left:-140px; height:200px; position:absolute; background-color:rgba(115, 29, 67, 0.88); z-index:10; top:50%; margin-top:-100px; border-radius: 20px; border: 2px solid rgba(115, 29, 67, 1); text-align:center; display:none;" id="modal_cerrar_sesion" >
 
             <h3 style=" color: #fff; text-shadow: none;     margin-top: 37px;     font-weight: 100;">Está segudo de cerrar sesión?</h3>
@@ -90,7 +145,7 @@
     <div id="contain_menu" style="z-index:999;" >
         <div id="menu_agro">
             <div class="background_filter">
-                <img src="assets/img/logo_ipcco.png" style="  width: 80px; float:left; margin-left:110px;     margin-top: 16px;  ">
+                <img src="assets/img/logo_app.png" style="  width: 80px; float:left; margin-left:110px;     margin-top: 16px;  ">
             </div>
 
             <div style="width:100%; float:left; " id="base_filtro">
@@ -115,7 +170,7 @@
                     <span class="nombre-filtro" id="name_filt_4">Buscar Fabricantes</span>
                 </div>
 
-                <div class="boton_menu_filtro" onclick="abrir_menu_principal('foo3',2,'','')">
+                <div class="boton_menu_filtro" onclick="abrir_pop_up_busqueda()">
                     <span class="nombre-filtro" id="name_filt_4">Buscar Productos</span>
                 </div>
 
@@ -193,7 +248,7 @@
                                     
                                 </div>
 
-                                <img src="assets/img/logo_ipcco.png" style="width: 120px; margin-top:220px;" >
+                                <img src="assets/img/logo_app.png" style="width: 312px; margin-top: 193px;" >
                                 <br />
                                 <span style="shadow-text:none; color:#fff;" id="load_in">... Cargando ...</span>
 
@@ -775,9 +830,6 @@
 
         <div role="main" class="ui-content" style="overflow-y:scroll; padding-left: 0px; padding-right: 0.1px; text-align:center; " id="id_main_1">
             
-            
-
-
             <div class="contain_principal_sectores" id="id_mi_pedido_login">
                  <center>
                     <div style="width:100%;">
@@ -994,13 +1046,19 @@
                 <button style="width:40px; height:40px; border: none; box-shadow: none; background-color:transparent; background-image:url(assets/img/search_icon_gray.png); background-size:30px; background-position:center; background-repeat:no-repeat; " onclick="abrir_pop_up_busqueda()"></button>
             </div>
             
-            <div style="width:100%; float:left;">
-
+            <div style="width:100%; float:left; position:relative;">
+                
                 <center>
-                     <select style="width:100%;" id="cmbsubcategoria" onchange="cargar_productos(this.value)">
+
+                    <select style="width:100%;" id="cmbsubcategoria"  onchange="cargar_productos(this.value)">
                        <option value=""><span id="sub_Cat">Subcategorias</span></option>
                     </select>
+
                 </center>
+                
+
+                 <button style="width:40px; height:40px; border: none; box-shadow: none; background-color:transparent; background-image:url(assets/img/back_gray.png); background-size:30px; background-position:center; background-repeat:no-repeat; position:absolute; top: -11px; left: 18px; " onclick="back_cat()"></button>
+
             </div>
         </div>
  
@@ -1050,7 +1108,7 @@
                
                 
                 <div style="width:100%; height:auto; float:left; margin-top:10px; text-align:center;">
-                      <h3 style="color:#a0a0a0;"><span id="precioDescuento">$0</span><small> <span style="text-decoration: line-through; margin-left:7px;" id="precioProducto">$0</span></small></h3>
+                      <h3 style="color:#a0a0a0;"><small style="font-weight: 100;">Desde: </small><span id="precioDescuento">$0</span><small style="font-weight: 100;"> Hasta: </small> <span style="margin-left:7px;" id="precioProducto">$0</span></h3>
                 </div>
 
 
@@ -1084,7 +1142,7 @@
                              </td>
 
                             <td style="border:none;">
-                                <button style="width:100%; background-color: #536dfe; color: #a0a0a0; text-shadow:none; " onclick="agrregar_pedido()">
+                                <button style="width:100%; background-color: #536dfe; color: #fff; text-shadow:none; " onclick="agrregar_pedido()">
                                     Agregar Pedido
                                 </button>
                              </td>

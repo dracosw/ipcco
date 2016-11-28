@@ -113,6 +113,11 @@
   <allow-intent href="sms:*"/>
   <allow-intent href="mailto:*"/>
   <allow-intent href="geo:*"/>
+
+  <feature name="InAppBrowser">
+    <param name="android-package" value="org.apache.cordova.InAppBrowser" />
+</feature>
+
   <platform name="android">
     <allow-intent href="market:*"/>
   </platform>
