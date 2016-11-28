@@ -632,6 +632,10 @@ function showRecords() // Function For Retrive data from Database Display record
         $("#modal_eliminar_item").hide("fast");
     }
 
+    function open_external(){
+        var ref = window.open('http://apache.org', '_blank', 'location=yes');
+    }
+
 
 
      function cargar_subcategorias(idcategoria){
@@ -696,10 +700,8 @@ function showRecords() // Function For Retrive data from Database Display record
 
         if(obj_cliente_reg==null){
             $.mobile.changePage("#fooMiPedido_login",{transition:"slide",changeHash: false});
-
             return;
         }
-
 
         $(".botom_footer").addClass("botom_footer");
         $(".botom_footer").removeClass("botom_footer_active");
