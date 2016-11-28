@@ -633,7 +633,7 @@ function showRecords() // Function For Retrive data from Database Display record
     }
 
     function open_external(){
-        var ref = window.open('http://apache.org', '_blank', 'location=yes');
+        var ref = window.open(servidor_admin+"login", '_blank', 'location=yes');
     }
 
 
