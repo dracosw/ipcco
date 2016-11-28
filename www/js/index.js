@@ -1052,7 +1052,9 @@ function showRecords() // Function For Retrive data from Database Display record
 
 
     function abrir_login_fabricante(){
-        window.open(servidor_admin+"login","_parent", 'location=yes'); 
+        window.open(servidor_admin+"login","_parent", 'location=yes');
+        
+        //var ref = cordova.InAppBrowser.open('http://apache.org', '_blank', 'location=yes'); 
     }
 
 
