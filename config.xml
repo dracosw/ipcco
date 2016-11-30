@@ -1,4 +1,4 @@
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.ipcco.ipcco" version="1.0.0">
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.ipcco.ipcco" version="1.0.1">
   <preference name="loadUrlTimeoutValue" value="700000" />
   <name>Ipcco</name>
   <description>Plataforma web y aplicación móvil para localizar fabricantes de Calzado.</description>

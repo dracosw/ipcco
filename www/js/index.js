@@ -1489,8 +1489,9 @@ function showRecords() // Function For Retrive data from Database Display record
                 var objgaleria=obj.galeria;
                 var objcolor=obj.colores;
                 var objtallas=obj.tallas;
+                var objsRedes=obj.redes;
 
-                abrir_producto_detail(objdata,objgaleria,objcolor,objtallas);
+                abrir_producto_detail(objdata,objgaleria,objcolor,objtallas,objsRedes);
 
               }else{
                 alert(""+obj.mensaje);
@@ -1525,7 +1526,7 @@ function showRecords() // Function For Retrive data from Database Display record
     var valorproducto_agregar="";
     var arra_descuentos_prod=new Object();
    
-    function abrir_producto_detail(obj_producto,obj_galeria,obj_colors,obj_tallas){
+    function abrir_producto_detail(obj_producto,obj_galeria,obj_colors,obj_tallas,obj_redes){
 
         
         $("#nombreProducto").html(""+obj_producto[0].nombreProducto);
@@ -1577,7 +1578,14 @@ function showRecords() // Function For Retrive data from Database Display record
                   fa.telefonosFabricante, 
                   fa.emailFabricante,
                   fa.latitudFabricante,
-                  fa.longitudFabricante*/
+                  fa.longitudFabricante
+
+        INSERT INTO redessociales (`nombreRedesSociales`, `iconoRedesSociales`) VALUES ('skype', 'icon-skype');
+
+        icon-facebook
+
+
+        */
 
 
         $("#logo_fabricante").html('<img style="width:100%;" src="'+servidor_ws+'/images/fabricantes/'+obj_producto[0].logoFabricante+'">');
@@ -1587,14 +1595,21 @@ function showRecords() // Function For Retrive data from Database Display record
         $("#nit_fab").html(""+obj_producto[0].nitFabricante);
         $("#direccion_fab").html(""+obj_producto[0].direccionFabricante);
         $("#ciudad_fab").html(""+obj_producto[0].nombreCiudad);
-        $("#tel_fab").html(""+obj_producto[0].telefonosFabricante);
+        $("#tel_fab").html('<a class="ui-btn ui-shadow ui-corner-all" style="width:77%; background-color: #536dfe; color: #fff; text-shadow:none;" href="tel:'+obj_producto[0].telefonosFabricante+'"><img src="assets/img/phone.png" style=" width: 20px;    float: left;" >'+obj_producto[0].telefonosFabricante+'</a>');
         $("#email_fab").html(""+obj_producto[0].emailFabricante);
 
         var longitudSucursalX=parseFloat(obj_producto[0].longitudFabricante);
         var latitudSucursalX=parseFloat(obj_producto[0].latitudFabricante);
         
+        var cadena_redes="";
 
-
+       
+        for(var i=0;i<obj_redes.length;i++){
+            cadena_redes+='<button type="button"  onclick="abrir_url_redes(&#39;'+obj_redes[i].urlRedSocial+'&#39;)"  style="width:50px; height:50px; margin-left:5px; float:left; background-color:#fff; color:#fff; border:1px solid #E72C78; border-radius:9px; ">';
+            cadena_redes+='   <img  src="assets/img/'+obj_redes[i].iconoRedesSociales+'.png" style="width:30px;" >';
+            cadena_redes+='</button>';
+        }
+        $("#contenido_redes").html(""+cadena_redes);
 
 
         $('#singleGallery_'+obj_producto[0].IdProducto+'').slick({
@@ -1607,10 +1622,6 @@ function showRecords() // Function For Retrive data from Database Display record
             autoplaySpeed: 2000
         });
 
-
-        
-
-        console.log(longitudSucursalX+" "+latitudSucursalX);
 
         var mapProp = {
 
@@ -1630,6 +1641,11 @@ function showRecords() // Function For Retrive data from Database Display record
                     
                 });
 
+    }
+
+
+    function abrir_url_redes(url_face){
+        var ref = window.open(url_face, '_blank', 'location=yes');
     }
 
 
