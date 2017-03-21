@@ -17,8 +17,8 @@
  * under the License.
  */
 
-var servidor_ws="http://ipcco.co/";
-var servidor_admin="http://admin.ipcco.co/";
+var servidor_ws="https://ipcco.co/";
+var servidor_admin="https://admin.ipcco.co/";
 
 var zoom_mapa=13;
 
