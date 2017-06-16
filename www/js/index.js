@@ -40,7 +40,7 @@ var db = openDatabase("ipcco", "1.0", "ipcco", 200000);  // Open SQLite Database
 
     $( document ).ready(function() {
 
-            
+            document.addEventListener("backbutton", yourCallbackFunction, false);
 
             $("#formulario_busqueda").submit(function(e){
                 e.preventDefault();
@@ -229,6 +229,10 @@ var db = openDatabase("ipcco", "1.0", "ipcco", 200000);  // Open SQLite Database
     }
 
 
+
+    function yourCallbackFunction(event){
+        alert("viaja atrás");
+    }
 
 
     function documentHeight() {
@@ -852,9 +856,15 @@ function showRecords() // Function For Retrive data from Database Display record
         $("#dispo_ventas").hide();
 
         id_prod_sel=""+idprod;
+        get_values_genr(idprod);
+
+       
 
 
-        var arr_descuentos=new Object();
+    }
+
+    function get_values_genr(idprod){
+         var arr_descuentos=new Object();
 
         for(var i=0;i<arra_productos.length;i++){
             if(parseInt(arra_productos[i].IdProducto)==parseInt(idprod)){
@@ -901,7 +911,7 @@ function showRecords() // Function For Retrive data from Database Display record
 
                 cadena_descuento+='<tr style="border:1px solid #e72c78;">';
                 cadena_descuento+='  <td style="border:1px solid #e72c78;">'+cantidades_pares+'</td>';
-                cadena_descuento+='  <td style="border:1px solid #e72c78;">'+arr_descuentos[i].valor_descuento+'</td>';
+                cadena_descuento+='  <td style="border:1px solid #e72c78;">$'+arr_descuentos[i].valor_descuento+'</td>';
                 cadena_descuento+="</tr>";
             }
         }else{
@@ -909,7 +919,7 @@ function showRecords() // Function For Retrive data from Database Display record
             cantidades_pares=arr_descuentos[0].cantidadDescuento+" - "+arr_descuentos[0].cantidadFinalDescuento+" Pares";
             cadena_descuento+='<tr style="border:1px solid #e72c78;">';
             cadena_descuento+='  <td style="border:1px solid #e72c78;">'+cantidades_pares+'</td>';
-            cadena_descuento+='  <td style="border:1px solid #e72c78;">'+arr_descuentos[0].valor_descuento+'</td>';
+            cadena_descuento+='  <td style="border:1px solid #e72c78;">$'+arr_descuentos[0].valor_descuento+'</td>';
             cadena_descuento+="</tr>";
             cadena_boton_inicio=' <button style="border-radius:7px; background-color: #536dfe; color: #ffffff; text-shadow:none; " onclick="selec_un_prod=1;abir_mi_pedido()" >Ver Precio Mayorista</button>';
 
@@ -919,8 +929,6 @@ function showRecords() // Function For Retrive data from Database Display record
 
         $(".cuerpo_tabla").html(cadena_descuento);
         $("#boton_de_inicio").html(cadena_boton_inicio);
-
-
     }
 
     function boton_cerrar_pop_prd(){
@@ -1548,6 +1556,10 @@ function showRecords() // Function For Retrive data from Database Display record
     }
 
     function abrir_detalle_prod(id_prod){
+
+
+        get_values_genr(id_prod);
+
         var cadena_cat_1="";
 
         var request = $.ajax({
@@ -2105,7 +2117,7 @@ function showRecords() // Function For Retrive data from Database Display record
                         cantidad_prod_estado+='          </div>';
 
 
-                        boton_eliminar_item+='   <div style="width:14%; float:right; height:90px; background-color:#eb3378; background-image:url(assets/img/icon_delete.png); background-size: 20px; background-repeat: no-repeat; background-position: center;" onclick="abrir_eliminar_item('+objectdat[i].idcarrito_pedido+')">';
+                        boton_eliminar_item+='   <div style="width:14%; float:right; height:60px; background-color:#eb3378; background-image:url(assets/img/icon_delete.png); background-size: 20px; background-repeat: no-repeat; background-position: center;" onclick="abrir_eliminar_item('+objectdat[i].idcarrito_pedido+')">';
                         boton_eliminar_item+='   </div>';
 
                         porcent_ancho="55%";
@@ -2116,10 +2128,10 @@ function showRecords() // Function For Retrive data from Database Display record
                     cadena_listado_pedi+='   <div style="width:95%; height:auto; margin-bottom:8px; background-color:#fff;float:left; margin-left: 9px; box-shadow: rgb(114, 114, 114) 1px 1px 3px 0px;">';
                     cadena_listado_pedi+='     <div style="width:30%; height:90px; float:left; background-image:url('+servidor_ws+'/images/products/'+objectdat[i].foto+'); background-position:center; background-size:contain; background-repeat:no-repeat;  ">';
                     cadena_listado_pedi+='   </div>';
-                    cadena_listado_pedi+='   <div style="width:'+porcent_ancho+'; float:left; height:90px; text-align:left; text-shadow: none; ">';
+                    cadena_listado_pedi+='   <div style="width:'+porcent_ancho+'; float:left; height:auto; text-align:left; text-shadow: none; ">';
                     cadena_listado_pedi+='       <span style="width:100%; margin-top:10px;     font-weight: bold; float:left;">'+objectdat[i].nombreProducto+'</span>';
                     cadena_listado_pedi+='       <span style="width:100%; float:left; color:#eb3378;     font-weight: 100; font-size: 12px; "><strong>Valor: </strong>$<span id="valor_prord_item_'+i+'">'+addCommas(valorprod)+'</span></span>';
-                    cadena_listado_pedi+='       <span style="width:100%; float:left; color:#eb3378;     font-weight: 100; font-size: 12px; "><strong>Color: </strong>'+colorProd+'  <strong>Talla: </strong>'+tallaProd+'   </span>';
+                    cadena_listado_pedi+='       <span style="width:100%; float:left; color:#eb3378;     font-weight: 100; font-size: 12px; "><strong>Color: </strong>'+colorProd+'  <br />  <strong>Talla: </strong>'+tallaProd+'   </span>';
                     cadena_listado_pedi+='       <div style="width:40%; float:left; margin-top:5px;">';
 
                     cadena_listado_pedi+=cantidad_prod_estado;
