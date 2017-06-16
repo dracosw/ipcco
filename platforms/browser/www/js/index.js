@@ -38,25 +38,26 @@ var insertStatement="INSERT INTO usuario (usuario, password,tipo) VALUES (?, ?, 
 var db = openDatabase("ipcco", "1.0", "ipcco", 200000);  // Open SQLite Database
 
 
+function backButtonCallback() {
+     navigator.notification.confirm('do you want to exit the app?',confirmCallback);
+}
 
-document.addEventListener("deviceready", onDeviceReady, false);
 
-    function onDeviceReady(){
-        document.addEventListener("backbutton", function(e){
-           if(document.getElementById('#foo1')){
-               e.preventDefault();
-               navigator.app.exitApp();
-           }
-           else {
-               navigator.app.backHistory();
-           }
-        }, false);
+function confirmCallback(buttonIndex) {
+    if(buttonIndex == 1) {
+        navigator.app.exitApp();
+        return true;
     }
+    else {
+        return false;
+    }
+}
 
 
     $( document ).ready(function() {
 
             
+            document.addEventListener('backbutton', backButtonCallback, false);
 
             $("#formulario_busqueda").submit(function(e){
                 e.preventDefault();
