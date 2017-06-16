@@ -38,19 +38,20 @@ var insertStatement="INSERT INTO usuario (usuario, password,tipo) VALUES (?, ?, 
 var db = openDatabase("ipcco", "1.0", "ipcco", 200000);  // Open SQLite Database
 
 
-document.addEventListener("backbutton", function(e){
-    if($.mobile.activePage.is('#foo1')){
-        /* 
-         Event preventDefault/stopPropagation not required as adding backbutton
-          listener itself override the default behaviour. Refer below PhoneGap link.
-        */
-        //e.preventDefault();
-        navigator.app.exitApp();
+
+document.addEventListener("deviceready", onDeviceReady, false);
+
+    function onDeviceReady(){
+        document.addEventListener("backbutton", function(e){
+           if(document.getElementById('#foo1')){
+               e.preventDefault();
+               navigator.app.exitApp();
+           }
+           else {
+               navigator.app.backHistory();
+           }
+        }, false);
     }
-    else {
-        navigator.app.backHistory()
-    }
-}, false);
 
 
     $( document ).ready(function() {
