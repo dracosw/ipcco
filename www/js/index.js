@@ -56,6 +56,7 @@ function confirmCallback(buttonIndex) {
 
     $( document ).ready(function() {
 
+   
             
             document.addEventListener('backbutton', backButtonCallback, false);
 
@@ -272,6 +273,7 @@ function confirmCallback(buttonIndex) {
     var cadena_muni="";
 
     function abrir_fabricantes(){
+        $("#btn_back_generico").show();
         $(".botom_footer").addClass("botom_footer");
         $(".botom_footer").removeClass("botom_footer_active");
         $("#btn_menu_3").addClass("botom_footer_active");
@@ -686,6 +688,8 @@ function showRecords() // Function For Retrive data from Database Display record
 
         $.mobile.changePage("#foo3",{transition:"slide",changeHash: false});
 
+        $("#btn_back_generico").show();
+
         request.done(function(obj) {                       
           //  var obj = jQuery.parseJSON(msg);  
             var id_sub=0;
@@ -731,6 +735,8 @@ function showRecords() // Function For Retrive data from Database Display record
         $(".botom_footer").addClass("botom_footer");
         $(".botom_footer").removeClass("botom_footer_active");
         $("#btn_menu_5").addClass("botom_footer_active");
+
+        $("#btn_back_generico").show();
 
         if(obj_cliente_reg==null){
             $.mobile.changePage("#fooMiPedido_login",{transition:"slide",changeHash: false});
@@ -1095,6 +1101,8 @@ function showRecords() // Function For Retrive data from Database Display record
 
 
     function abir_mi_pedido(){
+
+        $("#btn_back_generico").show();
 
         $(".botom_footer").addClass("botom_footer");
         $(".botom_footer").removeClass("botom_footer_active");
@@ -2389,7 +2397,66 @@ function showRecords() // Function For Retrive data from Database Display record
     }
 
     function back_cat(){
-        abrir_menu_principal('foo2',2,'','');
+
+        //abrir_menu_principal('foo2',2,'','');
+       // $("#btn_back_generico").hide();
+
+        $(".ui-page-active").each(function(){
+               var id_page=""+$(this).attr('id');
+
+               console.log("Class: "+id_page);
+
+               if(id_page=="foo3"){
+                   cambio_boton(2,0);
+                   return;
+               }
+
+               if(id_page=="fooProducto"){
+                   console.log("ddddesde");                   
+                   $.mobile.changePage("#foo3",{transition:"slidefade",changeHash: false});
+                   return;
+               }
+
+               if(id_page=="foo_mis_pedidos"){
+                   cambio_boton(2,0);
+                   return;
+               }
+
+               if(id_page=="fooMiPedido_mi_pedido"){
+                  $.mobile.changePage("#foo_mis_pedidos",{transition:"slidefade",changeHash: false});
+                  return;
+               }
+
+
+               if(id_page=="foo_productores"){
+                   cambio_boton(2,0);
+                   return;
+               }
+
+               if(id_page=="fooFabricante"){
+                   $.mobile.changePage("#foo_productores",{transition:"slidefade",changeHash: false});
+                  return;
+               }
+
+               if(id_page=="foo_productores_mapa"){
+                   $.mobile.changePage("#foo_productores",{transition:"slidefade",changeHash: false});
+                  return;
+               }
+
+               if(id_page=="fooMiPedido_login"){
+                   cambio_boton(2,0);
+                   return;
+               }
+
+
+               if(id_page=="fooMiPedido_registro"){
+                  $.mobile.changePage("#fooMiPedido_login",{transition:"slidefade",changeHash: false});
+                  return;
+               }
+              
+
+
+        });
     }
 
     function get_costo_envio(tipo,peso,fab){
@@ -2803,6 +2870,24 @@ function showRecords() // Function For Retrive data from Database Display record
 
 
         function cambio_boton(id_botom,ti){
+
+           
+            $("#btn_back_generico").show();
+            if(id_botom==1){
+                $("#btn_back_generico").hide();
+            }
+
+            if(id_botom==2){
+                $("#btn_back_generico").hide();
+            }
+
+
+            
+            
+            
+
+
+
             $(".botom_footer").addClass("botom_footer");
             $(".botom_footer").removeClass("botom_footer_active");
             $("#btn_menu_"+id_botom).addClass("botom_footer_active");
@@ -3104,6 +3189,7 @@ function showRecords() // Function For Retrive data from Database Display record
                     }
 
                     $.mobile.changePage("#foo3",{transition:"slide",changeHash: false});
+                    $("#btn_back_generico").show();
                   
                     abrir_mapa();
 
@@ -3689,6 +3775,7 @@ var myVar3="";
 
     function atras_detalle(){
         $.mobile.changePage("#foo3",{transition:"slide",changeHash: false});
+        $("#btn_back_generico").show();
     }
 
     function abrir_galeria(pathgal){
