@@ -807,7 +807,7 @@ function showRecords() // Function For Retrive data from Database Display record
                         var icono_heart="";
 
                         if(""+objdata[i].favorito=="1"){
-                            icono_heart="#ef6ae2;";
+                            icono_heart="#8132b3;";
                         }else{
                             icono_heart="#fbfbfb;";
                         }
