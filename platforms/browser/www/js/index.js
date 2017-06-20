@@ -248,7 +248,7 @@ function confirmCallback(buttonIndex) {
 
 
     function yourCallbackFunction(event){
-        alert("viaja atrás");
+        abrir_alerta_mensaje("viaja atrás");
     }
 
 
@@ -311,7 +311,7 @@ function confirmCallback(buttonIndex) {
  
         {
  
-            alert('Databases are not supported in this browser.');
+            abrir_alerta_mensaje('Databases are not supported in this browser.');
  
         }
  
@@ -421,7 +421,7 @@ function onError(tx, error) // Function for Hendeling Error...
  
 {
  
-    alert(error.message);
+    abrir_alerta_mensaje(error.message);
  
 }
 
@@ -606,14 +606,14 @@ function showRecords() // Function For Retrive data from Database Display record
                 //
 
               }else{
-                alert(""+obj.mensaje);
+                abrir_alerta_mensaje(""+obj.mensaje);
               }
 
             });     
 
              //respuesta si falla
             request.fail(function(jqXHR, textStatus) {
-              alert( "Error de servidor  " + textStatus );
+              abrir_alerta_mensaje( "Error de servidor  " + textStatus );
             });
         
     }
@@ -644,14 +644,14 @@ function showRecords() // Function For Retrive data from Database Display record
                 $("#contain_item_"+idcarrito_pedido).hide("fast");
 
               }else{
-                alert(""+obj.mensaje);
+                abrir_alerta_mensaje(""+obj.mensaje);
               }
 
             });     
 
              //respuesta si falla
             request.fail(function(jqXHR, textStatus) {
-              alert( "Error de servidor  " + textStatus );
+              abrir_alerta_mensaje( "Error de servidor  " + textStatus );
             });
 
         
@@ -666,6 +666,9 @@ function showRecords() // Function For Retrive data from Database Display record
     function open_external(){
         var ref = window.open(servidor_admin+"login", '_blank', 'location=yes');
     }
+
+
+
 
 
 
@@ -701,7 +704,7 @@ function showRecords() // Function For Retrive data from Database Display record
                 }
 
               }else{
-                alert(""+obj.mensaje);
+                abrir_alerta_mensaje(""+obj.mensaje);
               }
 
               $("#cmbsubcategoria").html(cadena_cat_1);
@@ -717,7 +720,7 @@ function showRecords() // Function For Retrive data from Database Display record
 
              //respuesta si falla
             request.fail(function(jqXHR, textStatus) {
-              alert( "Error de servidor  " + textStatus );
+              abrir_alerta_mensaje( "Error de servidor  " + textStatus );
             });
 
     }
@@ -806,7 +809,7 @@ function showRecords() // Function For Retrive data from Database Display record
                         if(""+objdata[i].favorito=="1"){
                             icono_heart="#ef6ae2;";
                         }else{
-                            icono_heart="#ccc;";
+                            icono_heart="#fbfbfb;";
                         }
 
 
@@ -825,7 +828,7 @@ function showRecords() // Function For Retrive data from Database Display record
                         
                        
 
-                        cadena_cat_1+='             <button id="btn_favorito_'+objdata[i].IdProducto+'" onclick="set_favoritos('+objdata[i].IdProducto+','+objdata[i].favorito+')" style="float:right; margin-right:5px; text-shadow: 1px 1px #7b7b7b;   width: 40px; height: 40px; font-size: 23px; background-position:center;  background-repeat:no-repeat; background-position:center; background-size:24px; background-color:transparent; border:none;  ">';
+                        cadena_cat_1+='             <button id="btn_favorito_'+objdata[i].IdProducto+'" onclick="set_favoritos('+objdata[i].IdProducto+','+objdata[i].favorito+')" style="float:right; margin-right:5px; text-shadow: 0px 0px 1px #7b7b7b;   width: 40px; height: 40px; font-size: 23px; background-position:center;  background-repeat:no-repeat; background-position:center; background-size:24px; background-color:transparent; border:none;  ">';
                         cadena_cat_1+='                 <span class="icon-favorite" style="color:'+icono_heart+'"></span>';
                         cadena_cat_1+='             </button>';
                         cadena_cat_1+='       </div>';
@@ -844,7 +847,7 @@ function showRecords() // Function For Retrive data from Database Display record
                 $("#filtro_productos").html(cadena_cat_1);
 
               }else{
-                alert(""+obj.mensaje);
+                abrir_alerta_mensaje(""+obj.mensaje);
               }
 
              
@@ -853,7 +856,7 @@ function showRecords() // Function For Retrive data from Database Display record
 
              //respuesta si falla
             request.fail(function(jqXHR, textStatus) {
-              alert( "Error de servidor  " + textStatus );
+              abrir_alerta_mensaje( "Error de servidor  " + textStatus );
             });
 
     }
@@ -962,7 +965,7 @@ function showRecords() // Function For Retrive data from Database Display record
     function set_favoritos(prod,estado){
 
         if(id_usuario_reg==""){
-            alert("Debes estar registrado para agregar este producto como favorito");
+            abrir_alerta_mensaje("Debes estar registrado para agregar este producto como favorito");
             return;
         }
 
@@ -987,14 +990,14 @@ function showRecords() // Function For Retrive data from Database Display record
                 cargar_productos(id_subcat_sel,'');
                 
               }else{
-                alert(""+obj.mensaje);
+                abrir_alerta_mensaje(""+obj.mensaje);
               }
 
             });     
 
              //respuesta si falla
             request.fail(function(jqXHR, textStatus) {
-              alert( "Error de servidor  " + textStatus );
+              abrir_alerta_mensaje( "Error de servidor  " + textStatus );
             });
     }
 
@@ -1067,7 +1070,7 @@ function showRecords() // Function For Retrive data from Database Display record
 
 
               }else{
-                alert(""+obj.mensaje);
+                abrir_alerta_mensaje(""+obj.mensaje);
               }
 
              
@@ -1076,7 +1079,7 @@ function showRecords() // Function For Retrive data from Database Display record
 
              //respuesta si falla
             request.fail(function(jqXHR, textStatus) {
-              alert( "Error de servidor  " + textStatus );
+              abrir_alerta_mensaje( "Error de servidor  " + textStatus );
             });
 
     }
@@ -1246,14 +1249,14 @@ function showRecords() // Function For Retrive data from Database Display record
                 $("#mis_pedidos").html(cadena_listado_pedi);
 
               }else{
-                alert(""+obj.mensaje);
+                abrir_alerta_mensaje(""+obj.mensaje);
               }
 
             });     
 
              //respuesta si falla
             request.fail(function(jqXHR, textStatus) {
-              alert( "Error de servidor  " + textStatus );
+              abrir_alerta_mensaje( "Error de servidor  " + textStatus );
             });
     }
 
@@ -1346,14 +1349,14 @@ function showRecords() // Function For Retrive data from Database Display record
                 
 
               }else{
-                alert(""+obj.mensaje);
+                abrir_alerta_mensaje(""+obj.mensaje);
               }
 
             });     
 
              //respuesta si falla
             request.fail(function(jqXHR, textStatus) {
-              alert( "Error de servidor  " + textStatus );
+              abrir_alerta_mensaje( "Error de servidor  " + textStatus );
             });
 
     }
@@ -1424,14 +1427,14 @@ function showRecords() // Function For Retrive data from Database Display record
                 
 
               }else{
-                alert(""+obj.mensaje);
+                abrir_alerta_mensaje(""+obj.mensaje);
               }
 
             });     
 
              //respuesta si falla
             request.fail(function(jqXHR, textStatus) {
-              alert( "Error de servidor  " + textStatus );
+              abrir_alerta_mensaje( "Error de servidor  " + textStatus );
             });
 
     }
@@ -1602,14 +1605,14 @@ function showRecords() // Function For Retrive data from Database Display record
                 abrir_producto_detail(objdata,objgaleria,objcolor,objtallas,objsRedes);
 
               }else{
-                alert(""+obj.mensaje);
+                abrir_alerta_mensaje(""+obj.mensaje);
               }
 
             });     
 
              //respuesta si falla
             request.fail(function(jqXHR, textStatus) {
-              alert( "Error de servidor  " + textStatus );
+              abrir_alerta_mensaje( "Error de servidor  " + textStatus );
             });
 
     }
@@ -1821,13 +1824,13 @@ function showRecords() // Function For Retrive data from Database Display record
               if( obj.status == "ok"){
 
               }else{
-                alert(""+obj.mensaje);
+                abrir_alerta_mensaje(""+obj.mensaje);
               }
 
             });     
 
             request.fail(function(jqXHR, textStatus) {
-              alert( "Error de servidor  " + textStatus );
+              abrir_alerta_mensaje( "Error de servidor  " + textStatus );
             });
     }
 
@@ -1909,12 +1912,12 @@ function showRecords() // Function For Retrive data from Database Display record
 
 
         if(tallaProducto==""){
-            alert("Debes seleccionar una talla");
+            abrir_alerta_mensaje("Debes seleccionar una talla");
             return;
         }
 
         if(colorProducto==""){
-            alert("Debe seleccionar un color");
+            abrir_alerta_mensaje("Debe seleccionar un color");
             return;
         }
         
@@ -1942,18 +1945,18 @@ function showRecords() // Function For Retrive data from Database Display record
             var cadena_combo="";
               if( obj.status == "ok"){
                 
-                alert(""+obj.mensaje);
+                abrir_alerta_mensaje(""+obj.mensaje);
                 abir_mi_pedido();
 
               }else{
-                alert(""+obj.mensaje);
+                abrir_alerta_mensaje(""+obj.mensaje);
               }
 
             });     
 
              //respuesta si falla
             request.fail(function(jqXHR, textStatus) {
-              alert( "Error de servidor  " + textStatus );
+              abrir_alerta_mensaje( "Error de servidor  " + textStatus );
             });
     }
 
@@ -1968,7 +1971,16 @@ function showRecords() // Function For Retrive data from Database Display record
 
 
 
+    var id_carrito_sel=-1;
+    var estado_carrito_sel=-1;
+    var index_carrito_sel=-1;
+
+
      function get_pedido(idcarrito,est_ped_sel,index_sel){
+
+        id_carrito_sel=idcarrito;
+        estado_carrito_sel=est_ped_sel;
+        index_carrito_sel=index_sel;
 
         $("#btn_compra_pedido").prop( "disabled", false );
         $("#btn_actualizar_carrito").prop( "disabled", false );
@@ -2004,6 +2016,7 @@ function showRecords() // Function For Retrive data from Database Display record
             cadena_botones+=' <button style=" width:33%; background-color: #a8439e; color: #fff; float:left; height: 55px;  text-shadow:none;" onclick="actualizar_carrito(1)"  id="btn_actualizar_carrito"  > Editar </button>';
 
 
+            console.log("esto "+index_sel);
 
 
 
@@ -2183,19 +2196,21 @@ function showRecords() // Function For Retrive data from Database Display record
                 calcular_totales();
 
               }else{
-                alert(""+obj.mensaje);
+                abrir_alerta_mensaje(""+obj.mensaje);
               }
 
             }); 
 
              //respuesta si falla
             request.fail(function(jqXHR, textStatus) {
-              alert( "Error de servidor  " + textStatus );
+              abrir_alerta_mensaje( "Error de servidor  " + textStatus );
             });
     }
 
     function pagar_pedido(){
-         $( "#frm_botonePayco" ).submit();
+        
+        var ref = window.open(servidor_ws+"mcomprar/"+idcarrito_sel, '_blank', 'location=yes');
+    
     }
 
 
@@ -2287,14 +2302,14 @@ function showRecords() // Function For Retrive data from Database Display record
                 
                 abir_mi_pedido();
               }else{
-                alert(""+obj.mensaje);
+                abrir_alerta_mensaje(""+obj.mensaje);
               }
 
         });     
 
          //respuesta si falla
         request.fail(function(jqXHR, textStatus) {
-          alert( "Error de servidor  " + textStatus );
+          abrir_alerta_mensaje( "Error de servidor  " + textStatus );
         });
         
     }
@@ -2476,16 +2491,17 @@ function showRecords() // Function For Retrive data from Database Display record
             var cadena_combo="";
               if( obj.status == "ok"){
                 
-                abir_mi_pedido();
+                //abir_mi_pedido();
+                get_pedido(id_carrito_sel,ti,index_carrito_sel);
               }else{
-                alert(""+obj.mensaje);
+                abrir_alerta_mensaje(""+obj.mensaje);
               }
 
             });     
 
              //respuesta si falla
             request.fail(function(jqXHR, textStatus) {
-              alert( "Error de servidor  " + textStatus );
+              abrir_alerta_mensaje( "Error de servidor  " + textStatus );
             });
 
     }
@@ -2510,16 +2526,17 @@ function showRecords() // Function For Retrive data from Database Display record
             var cadena_combo="";
               if( obj.status == "ok"){       
                 cerrar_pop_cancelar();         
-                abir_mi_pedido();
+                get_pedido(id_carrito_sel,ti,index_carrito_sel);
+               
               }else{
-                alert(""+obj.mensaje);
+                abrir_alerta_mensaje(""+obj.mensaje);
               }
 
             });     
 
              //respuesta si falla
             request.fail(function(jqXHR, textStatus) {
-              alert( "Error de servidor  " + textStatus );
+              abrir_alerta_mensaje( "Error de servidor  " + textStatus );
             });
 
     }
@@ -2602,14 +2619,14 @@ function showRecords() // Function For Retrive data from Database Display record
 
                 
               }else{
-                alert(""+obj.mensaje);
+                abrir_alerta_mensaje(""+obj.mensaje);
               }
 
             });     
 
              //respuesta si falla
             request.fail(function(jqXHR, textStatus) {
-              alert( "Error de servidor  " + textStatus );
+              abrir_alerta_mensaje( "Error de servidor  " + textStatus );
             });
     }
 
@@ -2688,14 +2705,14 @@ function showRecords() // Function For Retrive data from Database Display record
 
                 
               }else{
-                alert(""+obj.mensaje);
+                abrir_alerta_mensaje(""+obj.mensaje);
               }
 
             });     
 
              //respuesta si falla
             request.fail(function(jqXHR, textStatus) {
-              alert( "Error de servidor  " + textStatus );
+              abrir_alerta_mensaje( "Error de servidor  " + textStatus );
             });
     }
 
@@ -2852,14 +2869,14 @@ function showRecords() // Function For Retrive data from Database Display record
                     get_municipio(dpto);*/
                     
                   }else{
-                    alert(""+obj.mensaje);
+                    abrir_alerta_mensaje(""+obj.mensaje);
                   }
 
                 });     
 
                  //respuesta si falla
                 request.fail(function(jqXHR, textStatus) {
-                  alert( "Error de servidor  " + textStatus );
+                  abrir_alerta_mensaje( "Error de servidor  " + textStatus );
                 });
         }
 
@@ -2905,14 +2922,14 @@ function showRecords() // Function For Retrive data from Database Display record
                     get_municipio(dpto);*/
                     
                   }else{
-                    alert(""+obj.mensaje);
+                    abrir_alerta_mensaje(""+obj.mensaje);
                   }
 
                 });     
 
                  //respuesta si falla
                 request.fail(function(jqXHR, textStatus) {
-                  alert( "Error de servidor  " + textStatus );
+                  abrir_alerta_mensaje( "Error de servidor  " + textStatus );
                 });
         }
 
@@ -3096,13 +3113,13 @@ function showRecords() // Function For Retrive data from Database Display record
 
                       
                 }else{
-                  alert(""+obj.mensaje);
+                  abrir_alerta_mensaje(""+obj.mensaje);
                 }
 
               });
                
               request.fail(function(jqXHR, textStatus) {
-                   alert("Error de servidor  " + textStatus );         
+                   abrir_alerta_mensaje("Error de servidor  " + textStatus );         
               });
 
               cod_sector_filtro="";
@@ -3461,14 +3478,14 @@ var myVar3="";
 
                 
               }else{
-                alert(""+obj.mensaje);
+                abrir_alerta_mensaje(""+obj.mensaje);
               }
 
             });     
 
              //respuesta si falla
             request.fail(function(jqXHR, textStatus) {
-              alert( "Error de servidor  " + textStatus );
+              abrir_alerta_mensaje( "Error de servidor  " + textStatus );
             });
     }
 
@@ -3507,14 +3524,14 @@ var myVar3="";
                 traer_ciudad();
 
             }else{
-                alert(""+obj.mensaje);
+                abrir_alerta_mensaje(""+obj.mensaje);
             }
 
         });     
 
             
         request.fail(function(jqXHR, textStatus) {
-          alert( "Error de servidor  " + textStatus );
+          abrir_alerta_mensaje( "Error de servidor  " + textStatus );
         });
 
     }
@@ -3553,14 +3570,14 @@ var myVar3="";
                 $('#cmb_ciudad_reg').selectmenu('refresh');
 
             }else{
-                alert(""+obj.mensaje);
+                abrir_alerta_mensaje(""+obj.mensaje);
             }
 
         });     
 
             
         request.fail(function(jqXHR, textStatus) {
-          alert( "Error de servidor  " + textStatus );
+          abrir_alerta_mensaje( "Error de servidor  " + textStatus );
         });
 
     }
@@ -3584,28 +3601,28 @@ var myVar3="";
 
 
         if(nombres==""){
-          alert("EL nombre es un campo obligatorio");
+          abrir_alerta_mensaje("EL nombre es un campo obligatorio");
           return;
         }
 
         if(apellidos==""){
-          alert("El apellidos es un campo obligatorio");
+          abrir_alerta_mensaje("El apellidos es un campo obligatorio");
           return;
         }
 
         if(email==""){
-          alert("El email es un campo obligatorio");
+          abrir_alerta_mensaje("El email es un campo obligatorio");
           return;
         }
 
 
         if(telefono==""){
-          alert("El telefono es un campo obligatorio");
+          abrir_alerta_mensaje("El telefono es un campo obligatorio");
           return;
         }
 
         if(ciudad==""){
-          alert("El ciudad es un campo obligatorio");
+          abrir_alerta_mensaje("El ciudad es un campo obligatorio");
           return;
         }
 
@@ -3613,7 +3630,7 @@ var myVar3="";
         var id_cliente_d="";
         if(obj_cliente_reg==null){
             if(repassword==""){
-                alert("El password es un campo obligatorio");
+                abrir_alerta_mensaje("El password es un campo obligatorio");
                 return;
             }
         }else{
@@ -3624,7 +3641,7 @@ var myVar3="";
 
 
         if(repassword!=password){
-          alert("Los password no coinciden");
+          abrir_alerta_mensaje("Los password no coinciden");
           return;
         }
 
@@ -3650,18 +3667,18 @@ var myVar3="";
            
             if( obj.status == "ok"){  
 
-                alert(""+obj.mensaje);
+                abrir_alerta_mensaje(""+obj.mensaje);
                 abir_mi_pedido();
                 
 
               }else{
-                alert(""+obj.mensaje);
+                abrir_alerta_mensaje(""+obj.mensaje);
               }
             });
 
            //respuesta si falla
             request.fail(function(jqXHR, textStatus) {
-              alert("Error de servidor. "+textStatus);
+              abrir_alerta_mensaje("Error de servidor. "+textStatus);
             });
 
   }
@@ -3767,24 +3784,24 @@ var myVar3="";
 
 
             if(nombre.trim()==""){
-                alert("El campo nombre es requerido");
+                abrir_alerta_mensaje("El campo nombre es requerido");
                 return;
             }
 
             if(celular.trim()==""){
-                alert("El campo celular es requerido");
+                abrir_alerta_mensaje("El campo celular es requerido");
                 return;
             }
 
 
             if(producto.trim()==""){
-                alert("El campo producto es requerido");
+                abrir_alerta_mensaje("El campo producto es requerido");
                 return;
             }
 
 
             if(comentario.trim()==""){
-                alert("El campo comentario es requerido");
+                abrir_alerta_mensaje("El campo comentario es requerido");
                 return;
             }
 
@@ -3817,20 +3834,29 @@ var myVar3="";
                     $("#txtdireccion_registro").val("");
                     $("#txtcomentario_registro").val("");
 
-                    alert("El mensaje fue enviado con &eacute;xito");
+                    abrir_alerta_mensaje("El mensaje fue enviado con &eacute;xito");
 
                   }else{
-                    alert(""+obj.mensaje);
+                    abrir_alerta_mensaje(""+obj.mensaje);
                   }
 
                 });     
 
                  //respuesta si falla
                 request.fail(function(jqXHR, textStatus) {
-                  alert( "Error de servidor  " + textStatus );
+                  abrir_alerta_mensaje( "Error de servidor  " + textStatus );
                 });
         }
 
 
+
+function cerrar_modal_alerta(){
+    $("#modal_alerta").hide();
+}
+
+function abrir_alerta_mensaje(mensaje_alerta){
+    $("#modal_alerta").show();
+    $("#mensaje_alerta").html(""+mensaje_alerta);
+}
 
 

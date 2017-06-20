@@ -703,7 +703,7 @@
         </div>
 
         <div role="main" class="ui-content" style="overflow-y:scroll; padding-left: 0px; padding-right: 0.1px; text-align:center;" id="id_main_1">
-            <div class="contain_principal_sectores" id="id_mi_pedido_login">
+            <div class="contain_principal_sectores" id="id_mi_pedido_login" style="height: 750px;" >
                 <center>
 
                     <div style="width:80%;">
@@ -785,7 +785,7 @@
 
     <div data-role="page" id="fooMiPedido_mi_pedido" style="background-color:#f5f5f5 !important; position:relative;">
 
-         <div style="width:100%; height:130px; position:absolute; background-color:#fff; z-index:9; bottom: 0px; text-align:center; " >
+         <div style="width:100%; height:130px; position:absolute; background-color:#fff; z-index:9; bottom: 36px; text-align:center; " >
             <table style="width:100%" border="0">
                 <tr>
                     <td style="padding-left:15px; text-align:left;">Subtotal</td>
@@ -831,7 +831,7 @@
         </div>
 
 
-              <div style="width:280px; left:50%; margin-left:-140px; height:200px; position:absolute; background-color:rgba(115, 29, 67, 0.88); z-index:10; top:50%; margin-top:-100px; border-radius: 20px; border: 2px solid rgba(115, 29, 67, 1); text-align:center; display:none;" id="modal_limpiar_pedido" >
+        <div style="width:280px; left:50%; margin-left:-140px; height:200px; position:absolute; background-color:rgba(115, 29, 67, 0.88); z-index:10; top:50%; margin-top:-100px; border-radius: 20px; border: 2px solid rgba(115, 29, 67, 1); text-align:center; display:none;" id="modal_limpiar_pedido" >
 
             <h3 style=" color: #fff; text-shadow: none;     margin-top: 37px;     font-weight: 100;">Está segudo de limpiar este pedido?</h3>
             
@@ -908,6 +908,26 @@
 
 
 
+    <div style="width:280px; left:50%; margin-left:-140px; height:200px; position:absolute; background-color:rgba(115, 29, 67, 0.88); z-index:9999; top:50%; margin-top:-100px; border-radius: 20px; border: 2px solid rgba(115, 29, 67, 1); text-align:center; display:none;" id="modal_alerta" >
+
+            <h3 style=" color: #fff; text-shadow: none;     margin-top: 37px;     font-weight: 100;" id="mensaje_alerta">Está segudo de limpiar este pedido?</h3>
+            
+
+            <div style="width:218px; margin-left:auto; margin-right:auto;">
+
+                <button style="width:100px; background-color: #f7f7f7; color: rgba(115, 29, 67, 0.88); float:none;  text-shadow:none;  "  onclick="cerrar_modal_alerta()" >
+                    Aceptar
+                </button>
+
+              
+
+             </div>
+
+                
+        </div>
+
+
+
     
     <div data-role="page" id="foo_mis_pedidos" style="background-color:#f5f5f5 !important; position:relative;">
 
@@ -969,7 +989,7 @@
             </div>
         </div>
 
-        <div role="main" class="ui-content" style="overflow-y:scroll; padding-left: 0px; padding-right: 0.1px; text-align:center; margin-bottom:50px;" id="id_main_1">
+        <div role="main" class="ui-content" style="overflow-y:scroll; padding-left: 0px; padding-right: 0.1px; text-align:center; margin-bottom:250px;  " id="id_main_1">
             <div class="contain_principal_sectores" id="id_mi_registo_ipcco">
                 <center>
 
