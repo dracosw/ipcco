@@ -28,4 +28,8 @@
     <preference name="disable-cursor" value="false" />
     <preference name="android-minSdkVersion" value="7" />
     <preference name="android-installLocation" value="auto" />
+    <preference name="Fullscreen" value="true" />
+    <preference name="AndroidLaunchMode" value="singleInstance" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="KeepRunning" value="true" />
 </widget>

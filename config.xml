@@ -1,4 +1,4 @@
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.ipcco.ipcco" version="1.0.9">
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.ipcco.ipcco" version="1.0.10">
   <preference name="loadUrlTimeoutValue" value="700000" />
   <name>Ipcco</name>
   <description>Plataforma web y aplicación móvil para localizar fabricantes de Calzado.</description>
@@ -19,11 +19,6 @@
   <preference name="disable-cursor" value="false"/>
   <preference name="android-minSdkVersion" value="7"/>
   <preference name="android-installLocation" value="auto"/>
-
-  <preference name="Fullscreen" value="true" />
-  <preference name="AndroidLaunchMode" value="singleInstance" />
-  <preference name="DisallowOverscroll" value="true" />
-  <preference name="KeepRunning" value="true" />
 
 
   <icon src="icon.png"/>

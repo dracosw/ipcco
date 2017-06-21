@@ -57,7 +57,7 @@ function confirmCallback(buttonIndex) {
     $( document ).ready(function() {
 
    
-            
+            $(".quitar_log").hide();
             document.addEventListener('backbutton', backButtonCallback, false);
 
             $("#formulario_busqueda").submit(function(e){
@@ -667,6 +667,11 @@ function showRecords() // Function For Retrive data from Database Display record
 
     function open_external(){
         var ref = window.open(servidor_admin+"login", '_blank', 'location=yes');
+    }
+
+
+    function open_external_solicitar(){
+         var ref = window.open(servidor_ws+"land/index.html", '_blank', 'location=yes');
     }
 
 
@@ -1318,6 +1323,8 @@ function showRecords() // Function For Retrive data from Database Display record
 
                 obj_cliente_reg=objdata;
 
+
+                $(".quitar_log").show();
                 
 
                 id_usuario_reg=""+objdata[0].IdClientes;
@@ -1555,6 +1562,21 @@ function showRecords() // Function For Retrive data from Database Display record
 
     function open_pop_fabricante(logoempresa,nombreempresa,direccionempresa,telefonoempresa,emailempresa,idempresa){
 
+
+        if(""+direccionempresa=="null"){
+            direccionempresa="";
+        }
+
+        if(""+telefonoempresa=="null"){
+            telefonoempresa="";
+        }
+
+        if(""+emailempresa=="null"){
+            emailempresa="";
+        }
+
+
+
         var cadena_fab=' <div style="width:40%; background-color:#fff; background-image:url('+servidor_ws+'images/fabricantes/'+logoempresa+');  background-repeat:no-repeat; height:157px; float:left; border-radius:9px; margin-left:5px; margin-top:5px; background-position:center; background-size:contain;">';
         cadena_fab+='</div>';
 
@@ -1563,22 +1585,29 @@ function showRecords() // Function For Retrive data from Database Display record
         cadena_fab+='<div style="width: 100%; float: left; color: #fff;  text-align: left;  padding-top:5px; padding-left: 3px; text-shadow: none; font-size: 17px; font-weight:bold;" id="mapa_nombre_fabricante">';
         cadena_fab+=''+nombreempresa;
         cadena_fab+='</div>';
-        cadena_fab+='<div style="width: 100%; float: left; color: #fff;  text-align: left;  padding-top:5px; padding-left: 3px; text-shadow: none; font-size: 13px; font-weight:300;" id="mapa_dir_fabricante">';
+        cadena_fab+='<div style="width: 100%; float: left; color: #fff;  text-align: left;  padding-top:5px; padding-left: 3px; text-shadow: none; font-size: 13px; font-weight:300;" id="mapa_dir_fabricante" class="quitar_log">';
         cadena_fab+='<strong>DIR:</strong> '+direccionempresa;
         cadena_fab+='</div>';
-        cadena_fab+='<div style="width: 100%; float: left; color: #fff;  text-align: left;  padding-top:5px; padding-left: 3px; text-shadow: none; font-size: 13px; font-weight:300;" id="mapa_tel_fabricante">';
+        cadena_fab+='<div style="width: 100%; float: left; color: #fff;  text-align: left;  padding-top:5px; padding-left: 3px; text-shadow: none; font-size: 13px; font-weight:300;" id="mapa_tel_fabricante" class="quitar_log">';
         cadena_fab+='<strong>TEL:</strong> '+telefonoempresa;
         cadena_fab+='</div>';
-        cadena_fab+='<div style="width: 100%; float: left; color: #fff;  text-align: left;  padding-top:5px; padding-left: 3px; text-shadow: none; font-size: 13px; font-weight:300;" id="mapa_nombre_fabricante">';
+        cadena_fab+='<div style="width: 100%; float: left; color: #fff;  text-align: left;  padding-top:5px; padding-left: 3px; text-shadow: none; font-size: 13px; font-weight:300;" id="mapa_nombre_fabricante" class="quitar_log">';
         cadena_fab+='<strong>EMAIL:</strong> '+emailempresa;
         cadena_fab+='</div>';
-        cadena_fab+='<div style="width: 100%; float: left; color: #fff;  text-align: left;  padding-top:2px; padding-left: 3px; text-shadow: none; font-size: 13px; font-weight:300;" id="mapa_boton_fabricante">';
+        cadena_fab+='<div style="width: 100%; float: left; color: #fff;  text-align: left;  padding-top:2px; padding-left: 3px; text-shadow: none; font-size: 13px; font-weight:300;" id="mapa_boton_fabricante" class="quitar_log">';
         cadena_fab+='<button onclick="get_productor('+idempresa+')" style="width: 95%; height: 30px; background-color: rgb(56, 121, 140); color: #fff; text-shadow: none; padding-top: 5px; border: 1px solid #fff; border-radius: 16px;">Ir al Sitio</button>';
         cadena_fab+='</div>';
         cadena_fab+='  </div>';
 
 
         $("#info_fabricante_mapa").html(cadena_fab);
+
+
+         if(id_usuario_reg==""){
+                    $(".quitar_log").hide();
+                }else{
+                    $(".quitar_log").show();
+                }
 
       
     }
@@ -2632,6 +2661,9 @@ function showRecords() // Function For Retrive data from Database Display record
 
         objectFabricantes=new Object();
 
+
+
+
         
 
         request.done(function(obj) {                       
@@ -2657,31 +2689,47 @@ function showRecords() // Function For Retrive data from Database Display record
 
                     
 
-                    cadena_cat_1+='<div onclick="get_productor('+objdata[i].IdFabricante+')" style="width: 93%; margin-left: 4px; border-radius: 9px; margin-top: 5px; height: auto; float: left; padding: 2%; margin-bottom: 0px; border: 1px solid #ccc;">';
+                    cadena_cat_1+='<div  style="width: 93%; margin-left: 4px; border-radius: 9px; margin-top: 5px; height: auto; float: left; padding: 2%; margin-bottom: 0px; border: 1px solid #ccc;">';
                     cadena_cat_1+='<div style="width:100%; height:160px; float:left; background-color:'+color_fondo+'; border-radius: 7px; ">';
-                    cadena_cat_1+='<div  style="width:40%; height:160px;  background-color:#fff; float:left; background-repeat:no-repeat; background-image:url('+servidor_ws+'images/fabricantes/'+objdata[i].logoFabricante+'); background-size:contain; background-position:center;">';
+                    cadena_cat_1+='<div  style="width:40%; height:160px;  background-color:#fff; float:left; background-repeat:no-repeat; background-image:url('+servidor_ws+'images/fabricantes/'+objdata[i].logoFabricante+'); background-size:contain; background-position:center;"  onclick="get_productor('+objdata[i].IdFabricante+')" >';
                     cadena_cat_1+='</div>';
                     cadena_cat_1+='<div style="width:52%; height:160px; padding-left:0px;  padding-top:30px; float:left; text-align:center;">';
-                    cadena_cat_1+='<div style="width: 100%; float: left; color: #797979;  text-align: left;  padding-left: 15px; text-shadow: none; font-size: 20px; font-weight:bold;">';
-                    cadena_cat_1+=''+objdata[i].razonsocialFabricante;
+
+                     if(id_usuario_reg!=""){
+                        cadena_cat_1+='<div style="width: 100%; float: left; color: #797979;  text-align: left;  padding-left: 15px; text-shadow: none; font-size: 20px; font-weight:bold;">';
+                        cadena_cat_1+=''+objdata[i].razonsocialFabricante;
+                        cadena_cat_1+='</div>';
+                        cadena_cat_1+='<div  class="quitar_log" style="width: 100%; float: left; color: #797979;   margin-top:5px; text-align: left;  padding-left: 15px; text-shadow: none; font-size: 13px;">';
+                        cadena_cat_1+=''+objdata[i].direccionFabricante;
+                        cadena_cat_1+='</div>';
+                        cadena_cat_1+='<div  class="quitar_log" style="width: 100%; float: left; color: #797979;  margin-top:5px;  text-align: left;  padding-left: 15px; text-shadow: none; font-size: 13px;">';
+                        cadena_cat_1+='Tel: '+objdata[i].direccionFabricante;
+                        cadena_cat_1+='</div>';
+                        cadena_cat_1+='<div  class="quitar_log" style="width: 100%; float: left; color: #797979;  margin-top:5px;  text-align: left;  padding-left: 15px; text-shadow: none; font-size: 13px;">';
+                        cadena_cat_1+='Email: '+''+objdata[i].emailFabricante;
+                        cadena_cat_1+='</div>';
+
+                    }else{
+                         cadena_cat_1+='<div  class="quitar_log_2" style="width: 100%; float: left; color: #797979;  margin-top:5px;  text-align: left;  padding-left: 15px; text-shadow: none; font-size: 13px;">';
+                        cadena_cat_1+='  <button style=" width: 85%; background-color: #536dfe; color: #fff;     font-size: 13px; float: left; height: 55px; text-shadow: none; border: none; border-radius: 5px; margin-top: 17px;" id="btn_actualizar_carrito"  onclick="abrir_mi_cuenta()" > Ver Datos de Fabricante </button>';
+                        cadena_cat_1+='</div>';
+                    }
                     cadena_cat_1+='</div>';
-                    cadena_cat_1+='<div style="width: 100%; float: left; color: #797979;   margin-top:5px; text-align: left;  padding-left: 15px; text-shadow: none; font-size: 13px;">';
-                    cadena_cat_1+=''+objdata[i].direccionFabricante;
-                    cadena_cat_1+='</div>';
-                    cadena_cat_1+='<div style="width: 100%; float: left; color: #797979;  margin-top:5px;  text-align: left;  padding-left: 15px; text-shadow: none; font-size: 13px;">';
-                    cadena_cat_1+='Tel: '+objdata[i].direccionFabricante;;
-                    cadena_cat_1+='</div>';
-                    cadena_cat_1+='<div style="width: 100%; float: left; color: #797979;  margin-top:5px;  text-align: left;  padding-left: 15px; text-shadow: none; font-size: 13px;">';
-                    cadena_cat_1+='Email: '+''+objdata[i].emailFabricante;;
                     cadena_cat_1+='</div>';
                     cadena_cat_1+='</div>';
-                    cadena_cat_1+='</div>';
-                    cadena_cat_1+='</div>';
+
+
+
                     
                        
                 }
 
                 $("#contain_fabricantes_ipcco").html(cadena_cat_1);
+                if(id_usuario_reg==""){
+                    $(".quitar_log").hide();
+                }else{
+                    $(".quitar_log").show();
+                }
                 $.mobile.changePage("#foo_productores",{transition:"slide",changeHash: false});
 
                 
