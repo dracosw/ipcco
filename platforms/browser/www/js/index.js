@@ -1585,6 +1585,11 @@ function showRecords() // Function For Retrive data from Database Display record
         cadena_fab+='<div style="width: 100%; float: left; color: #fff;  text-align: left;  padding-top:5px; padding-left: 3px; text-shadow: none; font-size: 17px; font-weight:bold;" id="mapa_nombre_fabricante">';
         cadena_fab+=''+nombreempresa;
         cadena_fab+='</div>';
+
+
+        if(id_usuario_reg!=""){
+
+
         cadena_fab+='<div style="width: 100%; float: left; color: #fff;  text-align: left;  padding-top:5px; padding-left: 3px; text-shadow: none; font-size: 13px; font-weight:300;" id="mapa_dir_fabricante" class="quitar_log">';
         cadena_fab+='<strong>DIR:</strong> '+direccionempresa;
         cadena_fab+='</div>';
@@ -1594,7 +1599,16 @@ function showRecords() // Function For Retrive data from Database Display record
         cadena_fab+='<div style="width: 100%; float: left; color: #fff;  text-align: left;  padding-top:5px; padding-left: 3px; text-shadow: none; font-size: 13px; font-weight:300;" id="mapa_nombre_fabricante" class="quitar_log">';
         cadena_fab+='<strong>EMAIL:</strong> '+emailempresa;
         cadena_fab+='</div>';
-        cadena_fab+='<div style="width: 100%; float: left; color: #fff;  text-align: left;  padding-top:2px; padding-left: 3px; text-shadow: none; font-size: 13px; font-weight:300;" id="mapa_boton_fabricante" class="quitar_log">';
+
+        }else{
+             cadena_fab+='<div  class="quitar_log_2" style="width: 100%; float: left; color: #797979;  margin-top:5px;  text-align: left;  padding-left: 15px; text-shadow: none; font-size: 13px;">';
+            cadena_fab+='  <button style=" width: 85%; background-color: #536dfe; color: #fff;     font-size: 13px; float: left; height: 55px; text-shadow: none; border: none; border-radius: 5px; margin-top: 17px;" id="btn_actualizar_carrito"  onclick="abrir_mi_cuenta()" > Ver Datos de Fabricante </button>';
+            cadena_fab+='</div>';
+        }
+
+
+
+        cadena_fab+='<div style="width: 100%; float: left; color: #fff;  text-align: left;  padding-top:2px; padding-left: 3px; text-shadow: none; font-size: 13px; font-weight:300;" id="mapa_boton_fabricante">';
         cadena_fab+='<button onclick="get_productor('+idempresa+')" style="width: 95%; height: 30px; background-color: rgb(56, 121, 140); color: #fff; text-shadow: none; padding-top: 5px; border: 1px solid #fff; border-radius: 16px;">Ir al Sitio</button>';
         cadena_fab+='</div>';
         cadena_fab+='  </div>';
